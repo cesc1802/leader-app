@@ -1,4 +1,8 @@
 class Strings {
+  // For Welcome Page
+  static const signInButton = "Đăng nhập";
+  static const registerButton = "Đăng kí tài khoản";
+
   // for SignIn page
   static const signInTitle = "Sign In";
   static const signInSubTitle = "Don't have and account?";
