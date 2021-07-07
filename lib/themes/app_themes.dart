@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/themes/text_theme.dart';
 
@@ -10,7 +11,38 @@ class AppThemes {
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: appBarTheme,
     textTheme: AppTextTheme.textTheme.apply(
-      bodyColor: AppColors.primaryColor,
+      displayColor: AppColors.primaryColor,
+    ),
+    buttonTheme: ButtonThemeData(
+      buttonColor: AppColors.primaryColor,
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: MaterialStateProperty.all<EdgeInsets>(
+          EdgeInsets.symmetric(vertical: Dimens.gap_dp16),
+        ),
+        backgroundColor:
+            MaterialStateProperty.all<Color>(AppColors.primaryColor),
+        overlayColor: MaterialStateProperty.all<Color>(
+          Colors.white.withOpacity(0.2),
+        ),
+        foregroundColor: MaterialStateProperty.all<Color>(
+          Colors.white,
+        ),
+        textStyle: MaterialStateProperty.all<TextStyle>(
+          AppTextTheme.textTheme.headline5!,
+        ),
+        shape: MaterialStateProperty.all<OutlinedBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Dimens.gap_dp24),
+            side: BorderSide(
+              width: 1,
+              color: AppColors.primaryColor,
+            ),
+          ),
+        ),
+      ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
