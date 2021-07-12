@@ -100,14 +100,28 @@ class AuthScreen extends StatelessWidget {
                         .bodyText1!
                         .copyWith(fontSize: 12, color: AppColors.primaryColor),
                   ),
-                  ButtonText(
-                    title: "Chưa có tài khoản? Đăng ký",
-                    backgroundColor: Colors.white,
-                    borderColor: Colors.white,
-                    textStyle: Theme.of(context)
-                        .textTheme
-                        .bodyText1!
-                        .copyWith(fontSize: 12, color: AppColors.primaryColor),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Chưa có tài khoản?",
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 12,
+                              color: AppColors.primaryColor,
+                            ),
+                      ),
+                      ButtonText(
+                        title: "Đăng ký",
+                        backgroundColor: Colors.white,
+                        borderColor: Colors.white,
+                        padding: EdgeInsets.zero,
+                        textStyle:
+                            Theme.of(context).textTheme.bodyText1!.copyWith(
+                                  fontSize: 12,
+                                  color: AppColors.primaryColor,
+                                ),
+                      ),
+                    ],
                   ),
                 ],
               ),
