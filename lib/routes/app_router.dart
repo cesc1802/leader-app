@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leader_app/features/auth/pages/auth_screen.dart';
 import 'package:leader_app/features/error/error_page.dart';
 import 'package:leader_app/features/welcome/pages/welcome.dart';
 import 'package:leader_app/routes/route_name.dart';
@@ -9,6 +10,8 @@ class AppRouter {
       case RouteNames.root:
       case RouteNames.welcome:
         return buildRoute(settings, WelcomeScreen());
+      case RouteNames.authLogin:
+        return buildRoute(settings, AuthScreen());
       default:
         return buildRoute(settings, ErrorPage(routeName: settings.name));
     }

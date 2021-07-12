@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
+import 'app_constants.dart';
 
 class Dimens {
   static const double gap_dp0 = 0;

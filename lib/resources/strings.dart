@@ -3,6 +3,9 @@ class Strings {
   static const signInButton = "Đăng nhập";
   static const registerButton = "Đăng kí tài khoản";
 
+  // For Auth Page
+  static const authIntro = "Vui lòng điền thông tin đăng nhập để tiếp tục";
+
   // for SignIn page
   static const signInTitle = "Sign In";
   static const signInSubTitle = "Don't have and account?";
