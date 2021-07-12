@@ -5,6 +5,7 @@ import 'package:leader_app/resources/strings.dart';
 import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/utils/color_utils.dart';
 import 'package:leader_app/widgets/button_text.dart';
+import 'package:leader_app/widgets/common/custom_textfield.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -50,9 +51,13 @@ class AuthScreen extends StatelessWidget {
                         .copyWith(color: AppColors.primaryColor, fontSize: 12),
                   ),
                   Gaps.vGap16,
-                  _buildTaiKhoan(context),
+                  CustomTextField(
+                    labelText: "Tài khoản",
+                  ),
                   Gaps.vGap16,
-                  _buildMatKhau(context),
+                  CustomTextField(
+                    labelText: "Mật khẩu",
+                  ),
                   Gaps.vGap32,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -110,86 +115,6 @@ class AuthScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildTaiKhoan(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Tài khoản",
-          style: Theme.of(context).textTheme.bodyText1!.copyWith(
-              color: ColorUtils.convertFromHexColor(hexColor: "#C1C7D0"),
-              fontSize: 12),
-        ),
-        Gaps.vGap8,
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: AppColors.primaryColor,
-              width: 1,
-            ),
-            borderRadius: BorderRadius.circular(Dimens.gap_dp8),
-          ),
-          child: TextFormField(
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.only(
-                top: Dimens.gap_dp28,
-                left: Dimens.gap_dp16,
-                right: Dimens.gap_dp16,
-                bottom: -Dimens.gap_dp4,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide.none,
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide.none,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildMatKhau(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Mật khẩu",
-          style: Theme.of(context).textTheme.bodyText1!.copyWith(
-              color: ColorUtils.convertFromHexColor(hexColor: "#C1C7D0"),
-              fontSize: 12),
-        ),
-        Gaps.vGap8,
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: AppColors.primaryColor,
-              width: 1,
-            ),
-            borderRadius: BorderRadius.circular(Dimens.gap_dp8),
-          ),
-          child: TextFormField(
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.only(
-                top: Dimens.gap_dp28,
-                left: Dimens.gap_dp16,
-                right: Dimens.gap_dp16,
-                bottom: -Dimens.gap_dp4,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide.none,
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide.none,
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
