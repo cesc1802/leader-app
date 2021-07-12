@@ -4,7 +4,8 @@ class Strings {
   static const registerButton = "Đăng kí tài khoản";
 
   // For Auth Page
-  static const authIntro = "Vui lòng điền thông tin đăng nhập để tiếp tục";
+  static const authInstruction =
+      "Vui lòng điền thông tin đăng nhập để tiếp tục";
 
   // for SignIn page
   static const signInTitle = "Sign In";

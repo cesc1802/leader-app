@@ -27,7 +27,7 @@ class ButtonText extends StatelessWidget {
     final shape = borderColor != null
         ? MaterialStateProperty.all<OutlinedBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(Dimens.gap_dp8),
+              borderRadius: BorderRadius.circular(Dimens.gap_dp16),
               side: BorderSide(
                 width: 1,
                 color: borderColor!,

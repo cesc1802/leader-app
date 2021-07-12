@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leader_app/features/auth/pages/auth_screen.dart';
 import 'package:leader_app/features/welcome/widgets/slider_intro.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/resources/strings.dart';
@@ -52,7 +53,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ButtonText(title: Strings.signInButton),
+                  ButtonText(
+                    title: Strings.signInButton,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AuthScreen()),
+                      );
+                    },
+                  ),
                   Gaps.vGap16,
                   ButtonText(
                     title: Strings.signUpTitle,
