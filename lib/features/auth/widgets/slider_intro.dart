@@ -41,7 +41,11 @@ class _IntroSliderState extends State<IntroSlider> {
                   ),
                   Text(
                     sliderItem.title,
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2!
+                        .copyWith(fontSize: 30),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               );

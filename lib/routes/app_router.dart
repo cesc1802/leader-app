@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:leader_app/features/auth/pages/auth_screen.dart';
+import 'package:leader_app/features/auth/pages/login_page.dart';
+import 'package:leader_app/features/auth/pages/welcome_page.dart';
 import 'package:leader_app/features/error/error_page.dart';
-import 'package:leader_app/features/welcome/pages/welcome.dart';
 import 'package:leader_app/routes/route_name.dart';
 
 class AppRouter {

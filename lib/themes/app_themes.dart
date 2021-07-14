@@ -12,6 +12,7 @@ class AppThemes {
     appBarTheme: appBarTheme,
     textTheme: AppTextTheme.textTheme.apply(
       displayColor: AppColors.primaryColor,
+      bodyColor: AppColors.primaryColor,
     ),
     buttonTheme: ButtonThemeData(
       buttonColor: AppColors.primaryColor,
@@ -31,15 +32,11 @@ class AppThemes {
           Colors.white,
         ),
         textStyle: MaterialStateProperty.all<TextStyle>(
-          AppTextTheme.textTheme.headline5!,
+          AppTextTheme.textTheme.headline2!.copyWith(fontSize: 13),
         ),
         shape: MaterialStateProperty.all<OutlinedBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(Dimens.gap_dp24),
-            side: BorderSide(
-              width: 1,
-              color: AppColors.primaryColor,
-            ),
           ),
         ),
       ),
@@ -52,14 +49,5 @@ class AppThemes {
         color: AppColors.primaryColor,
       ),
     ),
-  );
-
-  static final appDarkTheme = ThemeData.dark().copyWith(
-    primaryColor: AppColors.primaryColor,
-    scaffoldBackgroundColor: Colors.white,
-    appBarTheme: appBarTheme,
-    // textTheme: AppTextTheme.textTheme.apply(
-    //   bodyColor: Colors.white,
-    // ),
   );
 }

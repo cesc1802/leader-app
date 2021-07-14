@@ -9,11 +9,11 @@ const kIntroSliderItems = [
     imageUrl: UIData.logo_1,
   ),
   SliderItem(
-    title: 'Thuận tiện tra cứu \nDễ dàng phê duyệt',
+    title: 'Giao diện thân thiện\nvới người dùng',
     imageUrl: UIData.logo_1,
   ),
   SliderItem(
-    title: 'Thuận tiện tra cứu \nDễ dàng phê duyệt',
+    title: 'An toàn và bảo mật\nthông tin',
     imageUrl: UIData.logo_1,
   ),
 ];

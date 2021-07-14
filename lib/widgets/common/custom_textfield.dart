@@ -67,10 +67,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
         if (widget.labelText != null)
           Text(
             widget.labelText ?? '',
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                  color: ColorUtils.convertFromHexColor(hexColor: "#C1C7D0"),
-                  fontSize: 12,
-                ),
+            style: Theme.of(context)
+                .textTheme
+                .headline3!
+                .copyWith(color: AppColors.primaryColor),
           ),
         Gaps.vGap8,
         Container(
@@ -81,7 +81,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           child: TextFormField(
             onChanged: widget.onChanged,
             style: TextStyle(
-              color: ColorUtils.convertFromHexColor(hexColor: "#333333"),
+              color: AppColors.textFieldColor,
             ),
             obscureText: widget.obscureText ?? false,
             cursorColor: AppColors.primaryColor,

@@ -27,7 +27,7 @@ class ButtonText extends StatelessWidget {
     final shape = borderColor != null
         ? MaterialStateProperty.all<OutlinedBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(Dimens.gap_dp16),
+              borderRadius: BorderRadius.circular(Dimens.gap_dp24),
               side: BorderSide(
                 width: 1,
                 color: borderColor!,
@@ -35,17 +35,22 @@ class ButtonText extends StatelessWidget {
             ),
           )
         : null;
+
+    final defaultTextTheme = Theme.of(context).textTheme.headline2;
+
     return TextButton(
       onPressed: onPressed,
       style: ButtonStyle(
         padding: MaterialStateProperty.all<EdgeInsets>(
-          padding ??
-              EdgeInsets.symmetric(
-                horizontal: Dimens.gap_dp16,
-                vertical: Dimens.gap_dp16,
-              ),
+          padding ?? const EdgeInsets.all(Dimens.gap_dp16),
         ),
         backgroundColor: MaterialStateProperty.resolveWith((states) {
+          if (states.contains(MaterialState.disabled)) {
+            if (backgroundColor == null)
+              return AppColors.primaryColor.withOpacity(0.2);
+
+            return backgroundColor!.withOpacity(0.2);
+          }
           return backgroundColor;
         }),
         foregroundColor: MaterialStateProperty.all(textColor),
@@ -54,8 +59,12 @@ class ButtonText extends StatelessWidget {
       child: Text(
         title,
         style: textStyle ??
-            Theme.of(context).textTheme.headline5!.apply(
-                color: backgroundColor != null ? AppColors.primaryColor : null),
+            defaultTextTheme!.copyWith(
+              color: backgroundColor != null
+                  ? AppColors.primaryColor
+                  : Colors.white,
+              fontSize: 13,
+            ),
       ),
     );
   }
