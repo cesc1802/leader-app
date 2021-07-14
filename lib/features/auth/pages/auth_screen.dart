@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:leader_app/features/home/pages/home_page.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/resources/strings.dart';
 import 'package:leader_app/themes/app_colors.dart';
@@ -52,11 +53,18 @@ class AuthScreen extends StatelessWidget {
                   ),
                   Gaps.vGap16,
                   CustomTextField(
-                    labelText: "Tài khoản",
-                  ),
+                      labelText: "Tài khoản",
+                      obscureText: false,
+                      onChanged: (value) {
+                        print(value);
+                      }),
                   Gaps.vGap16,
                   CustomTextField(
                     labelText: "Mật khẩu",
+                    obscureText: true,
+                    onChanged: (value) {
+                      print(value);
+                    },
                   ),
                   Gaps.vGap32,
                   Row(
@@ -89,12 +97,19 @@ class AuthScreen extends StatelessWidget {
                   ButtonText(
                     title: Strings.signInButton,
                     borderColor: Colors.white,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
+                    },
                   ),
                   Gaps.vGap16,
                   ButtonText(
                     title: "Quên mật khẩu ?",
                     backgroundColor: Colors.white,
                     borderColor: Colors.white,
+                    padding: EdgeInsets.zero,
                     textStyle: Theme.of(context)
                         .textTheme
                         .bodyText1!
