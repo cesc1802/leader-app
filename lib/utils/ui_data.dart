@@ -4,4 +4,7 @@ class UIData {
   static const String logo_1 = "$imageDir/Logo_1.png";
   static const String logo_2 = "$imageDir/Logo_2.png";
   static const String logo_3 = "$imageDir/Logo_3.png";
+  static const String lockIcon = "$imageDir/lock-icon.png";
+  static const String userIcon = "$imageDir/user-icon.png";
+  static const String showIcon = "$imageDir/show-icon.png";
 }

@@ -6,6 +6,7 @@ import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/resources/strings.dart';
 import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/utils/color_utils.dart';
+import 'package:leader_app/utils/ui_data.dart';
 import 'package:leader_app/widgets/button_text.dart';
 import 'package:leader_app/widgets/common/custom_textfield.dart';
 
@@ -56,15 +57,18 @@ class AuthScreen extends StatelessWidget {
               ),
               Gaps.vGap16,
               CustomTextField(
-                  labelText: "Tài khoản",
+                  labelText: Strings.login_account_label,
                   obscureText: false,
+                  prefixIcon: Image.asset(UIData.userIcon),
                   onChanged: (value) {
                     // print(value);
                   }),
               Gaps.vGap16,
               CustomTextField(
-                labelText: "Mật khẩu",
+                labelText: Strings.login_password_label,
                 obscureText: true,
+                prefixIcon: Image.asset(UIData.lockIcon),
+                suffixIcon: Image.asset(UIData.showIcon),
                 onChanged: (value) {
                   // print(value);
                 },
@@ -74,12 +78,11 @@ class AuthScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Lưu đăng nhập",
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          color: ColorUtils.convertFromHexColor(
-                              hexColor: "#C1C7D0"),
-                          fontSize: 12,
-                        ),
+                    Strings.login_save_account,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .copyWith(color: AppColors.disableColor, fontSize: 12),
                   ),
                   FlutterSwitch(
                       inactiveColor:
@@ -89,9 +92,7 @@ class AuthScreen extends StatelessWidget {
                       value: false,
                       width: 40.0,
                       height: 20.0,
-                      // valueFontSize: 50.0,
                       toggleSize: 5.0,
-                      // borderRadius: 150.0,
                       padding: 8.0,
                       onToggle: (val) {})
                 ],

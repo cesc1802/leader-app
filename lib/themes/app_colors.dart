@@ -12,4 +12,7 @@ class AppColors {
 
   static Color textFieldColor =
       ColorUtils.convertFromHexColor(hexColor: "#333333");
+
+  static Color disableColor =
+      ColorUtils.convertFromHexColor(hexColor: "#C1C7D0");
 }

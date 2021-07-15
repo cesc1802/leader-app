@@ -41,6 +41,18 @@ class AppThemes {
         ),
       ),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      contentPadding: const EdgeInsets.all(Dimens.gap_dp16),
+      isDense: true,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(Dimens.gap_dp8),
+        borderSide: BorderSide(color: AppColors.primaryColor),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(Dimens.gap_dp8),
+        borderSide: BorderSide(color: AppColors.primaryColor),
+      ),
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
       selectedItemColor: AppColors.primaryColor.withOpacity(0.6),
