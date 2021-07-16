@@ -15,4 +15,7 @@ class AppColors {
 
   static Color disableColor =
       ColorUtils.convertFromHexColor(hexColor: "#C1C7D0");
+
+  static Color decisionCardColor =
+      ColorUtils.convertFromHexColor(hexColor: "#EEF0FE");
 }
