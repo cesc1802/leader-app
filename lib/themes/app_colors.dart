@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:leader_app/utils/color_utils.dart';
 
 class AppColors {
-  static Color primaryColor =
-      ColorUtils.convertFromHexColor(hexColor: "#3754AF");
+  // default color
+  static Color primaryColor = Color(0xFF3754AF);
+  static Color secondaryColor = Color(0xFFFCD62D);
+  static Color errorColor = Color(0xFFF61618);
+  static Color textFieldColor = Color(0xFF333333);
+  static Color disableColor = Color(0xFFC1C7D0);
 
-  static Color secondaryColor =
-      ColorUtils.convertFromHexColor(hexColor: "#FCD62D");
+  // tab color
+  static Color unselectedTabColor = Color(0xFFFFFFFF);
+  static Color tabUnderLineColor = Color(0xFF4471C2);
+  static Color tabIndicatorColor = Color(0xFFFEFEFF);
 
-  static Color errorColor = ColorUtils.convertFromHexColor(hexColor: "#F61618");
-
-  static Color textFieldColor =
-      ColorUtils.convertFromHexColor(hexColor: "#333333");
-
-  static Color disableColor =
-      ColorUtils.convertFromHexColor(hexColor: "#C1C7D0");
-
-  static Color decisionCardColor =
-      ColorUtils.convertFromHexColor(hexColor: "#EEF0FE");
+  // decision_page
+  static Color decisionItemBGColor = Color(0xFFEEF0FE);
+  static Color decisionItemSubTitleColor = Color(0xFF766FA5);
+  static Color decisionCardColor = Color(0xEEF0FE);
 }

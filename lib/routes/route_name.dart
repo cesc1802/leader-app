@@ -5,4 +5,5 @@ class RouteNames {
   static const home = "/home";
   static const profile = "/profile";
   static const authLogin = "auth/login";
+  static const decisionList = "decision/list";
 }

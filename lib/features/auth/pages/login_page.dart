@@ -8,7 +8,7 @@ import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/utils/color_utils.dart';
 import 'package:leader_app/utils/ui_data.dart';
 import 'package:leader_app/widgets/button_text.dart';
-import 'package:leader_app/widgets/common/custom_textfield.dart';
+import 'package:leader_app/widgets/custom_textfield.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);

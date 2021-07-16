@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:leader_app/routes/app_router.dart';
 import 'package:leader_app/routes/route_name.dart';
 import 'package:leader_app/themes/app_themes.dart';
@@ -27,7 +28,16 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: AppThemes.appLightTheme,
-      initialRoute: RouteNames.welcome,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en'),
+        const Locale('vi'),
+      ],
+      locale: const Locale('vi'),
+      initialRoute: RouteNames.root,
       onGenerateRoute: AppRouter.generateRoute,
     );
   }

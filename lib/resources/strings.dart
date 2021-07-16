@@ -14,6 +14,8 @@ class Strings {
   static const login_password_label = "Mật khẩu";
   static const login_save_account = "Lưu đăng nhập";
 
+  static const approve_decision = "Phê duyệt quyết định";
+
   static const home_category = "Danh mục";
   static const decision_detail_header = "Quyết định";
   static const decision_header = "Phê duyệt quyết định";

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:leader_app/features/app.dart';
 import 'package:leader_app/features/auth/pages/login_page.dart';
 import 'package:leader_app/features/auth/pages/welcome_page.dart';
+import 'package:leader_app/features/decision/pages/list_decision_page.dart';
 import 'package:leader_app/features/error/error_page.dart';
 import 'package:leader_app/routes/route_name.dart';
 
@@ -8,10 +10,13 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteNames.root:
+        return buildRoute(settings, App());
       case RouteNames.welcome:
         return buildRoute(settings, WelcomeScreen());
       case RouteNames.authLogin:
         return buildRoute(settings, AuthScreen());
+      case RouteNames.decisionList:
+        return buildRoute(settings, ListDecisionPage());
       default:
         return buildRoute(settings, ErrorPage(routeName: settings.name));
     }
