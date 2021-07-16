@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:leader_app/features/home/widgets/category_list.dart';
+import 'package:leader_app/features/home/widgets/category_title.dart';
+import 'package:leader_app/features/home/widgets/home_title.dart';
+import 'package:leader_app/features/home/widgets/search.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/utils/color_utils.dart';
 import 'package:leader_app/utils/ui_data.dart';
+import 'package:leader_app/widgets/common/decision_listview.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -34,42 +40,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
-            width: double.infinity,
-            height: 85,
-            padding: EdgeInsets.fromLTRB(16, 16, 16, Dimens.gap_dp32),
-            color: AppColors.primaryColor,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(Dimens.gap_dp24),
-              ),
-              child: TextFormField(
-                style: TextStyle(
-                  color: ColorUtils.convertFromHexColor(hexColor: "#333333"),
-                ),
-                decoration: InputDecoration(
-                  hintText: "Tìm kiếm nội dung",
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: ColorUtils.convertFromHexColor(hexColor: "#3754AF"),
-                  ),
-                  contentPadding: const EdgeInsets.only(
-                    top: Dimens.gap_dp28,
-                    left: Dimens.gap_dp16,
-                    right: Dimens.gap_dp16,
-                    bottom: -Dimens.gap_dp4,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          Search(),
           Expanded(
             child: Container(
               decoration: BoxDecoration(
@@ -85,31 +56,33 @@ class HomeScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: Dimens.gap_dp28,
-                      left: Dimens.gap_dp16,
-                      right: Dimens.gap_dp16,
+                  HomeTitle(),
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        top: Dimens.gap_dp8,
+                        left: Dimens.gap_dp16,
+                        right: Dimens.gap_dp16,
+                      ),
+                      child: DecisionListView(),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Thông báo",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline3!
-                              .copyWith(color: AppColors.primaryColor),
-                        ),
-                        Text(
-                          "Xem thêm",
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    color: AppColors.primaryColor,
-                                    fontSize: 12,
-                                  ),
-                        )
-                      ],
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: Dimens.gap_dp16, right: Dimens.gap_dp16),
+                      child: Column(
+                        children: [
+                          CategoryTitle(),
+                          Gaps.vGap8,
+                          Expanded(
+                            child: CategoriesList(),
+                          ),
+                          Gaps.vGap16,
+                        ],
+                      ),
                     ),
                   )
                 ],
