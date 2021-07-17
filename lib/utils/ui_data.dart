@@ -10,6 +10,9 @@ class UIData {
   static const String searchIcon = "$imageDir/search-icon.png";
   static const String backIcon = "$imageDir/back-icon.png";
   static const String advanceFilterIcon = "$imageDir/advance-filtter-icon.png";
+  static const String deleteIcon = "$imageDir/delete-icon.png";
+  static const String acceptIcon = "$imageDir/accept-icon.png";
+  static const String removeIcon = "$imageDir/remove-icon.png";
 
   static const String categoryTraCuuPT = "$imageDir/dm-tc-phuongtien.png";
   static const String categoryTraCuuCCCD = "$imageDir/dm-tc-cccd.png";

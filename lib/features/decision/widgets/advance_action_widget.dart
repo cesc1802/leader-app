@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leader_app/resources/dimens.dart';
+import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/utils/ui_data.dart';
 import 'package:leader_app/widgets/button_text.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -27,10 +28,18 @@ class _AdvanceActionWidgetState extends State<AdvanceActionWidget> {
                 width: 20,
                 child: Checkbox(
                   value: true,
+                  fillColor: MaterialStateColor.resolveWith(
+                    (states) {
+                      if (states.contains(MaterialState.selected)) {
+                        return AppColors.primaryColor;
+                      }
+                      return AppColors.disableColor;
+                    },
+                  ),
                   onChanged: (value) {},
                 ),
               ),
-              Gaps.hGap16,
+              Gaps.hGap8,
               Text(
                 "Chọn",
                 style: Theme.of(context)
@@ -45,7 +54,7 @@ class _AdvanceActionWidgetState extends State<AdvanceActionWidget> {
             child: Row(
               children: [
                 Image.asset(UIData.advanceFilterIcon),
-                Gaps.hGap16,
+                Gaps.hGap8,
                 Text(
                   "Tìm kiếm nâng cao",
                   style: Theme.of(context)
@@ -77,6 +86,19 @@ class _AdvanceActionWidgetState extends State<AdvanceActionWidget> {
                   view: DateRangePickerView.month,
                   backgroundColor: Colors.white,
                   selectionMode: DateRangePickerSelectionMode.range,
+                  selectionTextStyle: Theme.of(context)
+                      .textTheme
+                      .headline1!
+                      .copyWith(fontSize: 12, color: Colors.white),
+                  selectionColor: AppColors.primaryColor,
+                  startRangeSelectionColor: AppColors.primaryColor,
+                  endRangeSelectionColor: AppColors.primaryColor,
+                  rangeSelectionColor: AppColors.rangeSelectionColor,
+                  headerHeight: 56,
+                  rangeTextStyle: Theme.of(context)
+                      .textTheme
+                      .headline1!
+                      .copyWith(fontSize: 12),
                   headerStyle: DateRangePickerHeaderStyle(
                     textAlign: TextAlign.center,
                   ),

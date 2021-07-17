@@ -26,6 +26,10 @@ class SearchInputWidget extends StatelessWidget {
           borderSide: BorderSide(color: Colors.transparent),
         ),
         hintText: "Tìm kiếm nội dung",
+        hintStyle: Theme.of(context)
+            .textTheme
+            .headline2!
+            .copyWith(color: AppColors.disableColor, fontSize: 12),
         prefixIcon: Icon(
           Icons.search,
         ),

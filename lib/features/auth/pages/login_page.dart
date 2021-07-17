@@ -9,6 +9,7 @@ import 'package:leader_app/utils/color_utils.dart';
 import 'package:leader_app/utils/ui_data.dart';
 import 'package:leader_app/widgets/button_text.dart';
 import 'package:leader_app/widgets/custom_textfield.dart';
+import 'package:leader_app/widgets/title_appbar_widget.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -18,7 +19,10 @@ class AuthScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        brightness: Brightness.dark,
+        automaticallyImplyLeading: false,
+        titleSpacing: 0,
+        title: TitleAppBarWidget(),
       ),
       body: Container(
         width: double.infinity,
