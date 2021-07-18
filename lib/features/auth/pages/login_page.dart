@@ -1,13 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:leader_app/features/home/pages/home_page.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/resources/strings.dart';
 import 'package:leader_app/themes/app_colors.dart';
-import 'package:leader_app/utils/color_utils.dart';
 import 'package:leader_app/utils/ui_data.dart';
 import 'package:leader_app/widgets/button_text.dart';
+import 'package:leader_app/widgets/common/custom_switch_button.dart';
 import 'package:leader_app/widgets/custom_textfield.dart';
 import 'package:leader_app/widgets/title_appbar_widget.dart';
 
@@ -88,17 +87,10 @@ class AuthScreen extends StatelessWidget {
                         .bodyText1!
                         .copyWith(color: AppColors.disableColor, fontSize: 12),
                   ),
-                  FlutterSwitch(
-                      inactiveColor:
-                          ColorUtils.convertFromHexColor(hexColor: "#C1C7D0"),
-                      toggleColor: Colors.white,
-                      activeColor: AppColors.primaryColor,
-                      value: false,
-                      width: 40.0,
-                      height: 20.0,
-                      toggleSize: 5.0,
-                      padding: 8.0,
-                      onToggle: (val) {})
+                  CustomSwitch(
+                    initValue: false,
+                    onChanged: (value) {},
+                  ),
                 ],
               ),
               Gaps.vGap32,
