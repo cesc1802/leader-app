@@ -68,7 +68,8 @@ class _ListDecisionPageState extends State<ListDecisionPage>
               height: 45,
               decoration: BoxDecoration(
                 border: Border(
-                    bottom: BorderSide(color: AppColors.tabUnderLineColor)),
+                  bottom: BorderSide(color: AppColors.tabUnderLineColor),
+                ),
               ),
               child: Theme(
                 data: ThemeData().copyWith(

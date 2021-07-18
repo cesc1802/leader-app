@@ -51,7 +51,10 @@ class TitleAppBarWidget extends StatelessWidget {
     return title != null
         ? Text(
             title!,
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context)
+                .textTheme
+                .headline2!
+                .copyWith(color: Colors.white, fontSize: 20),
             textAlign: TextAlign.center,
           )
         : SizedBox();

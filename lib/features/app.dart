@@ -24,6 +24,9 @@ class App extends StatelessWidget {
             _buildButton(
                 context, RouteNames.decisionList, "List Decision Page"),
             SizedBox(height: 16),
+            _buildButton(
+                context, RouteNames.decisionListV2, "List Decision Page V2"),
+            SizedBox(height: 16),
           ],
         ),
       ),

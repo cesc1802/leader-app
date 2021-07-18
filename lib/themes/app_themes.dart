@@ -3,7 +3,7 @@ import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/themes/text_theme.dart';
 
-final appBarTheme = AppBarTheme(centerTitle: false, elevation: 0);
+const appBarTheme = AppBarTheme(centerTitle: false, elevation: 0);
 
 class AppThemes {
   static final appLightTheme = ThemeData.light().copyWith(

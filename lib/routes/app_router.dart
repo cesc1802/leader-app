@@ -3,6 +3,7 @@ import 'package:leader_app/features/app.dart';
 import 'package:leader_app/features/auth/pages/login_page.dart';
 import 'package:leader_app/features/auth/pages/welcome_page.dart';
 import 'package:leader_app/features/decision/pages/list_decision_page.dart';
+import 'package:leader_app/features/decision/pages/list_decision_page_v2.dart';
 import 'package:leader_app/features/error/error_page.dart';
 import 'package:leader_app/routes/route_name.dart';
 
@@ -17,6 +18,8 @@ class AppRouter {
         return buildRoute(settings, AuthScreen());
       case RouteNames.decisionList:
         return buildRoute(settings, ListDecisionPage());
+      case RouteNames.decisionListV2:
+        return buildRoute(settings, ListDecisionPageV2());
       default:
         return buildRoute(settings, ErrorPage(routeName: settings.name));
     }
