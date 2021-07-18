@@ -7,6 +7,7 @@ class AppColors {
   static const Color errorColor = Color(0xFFF61618);
   static const Color textFieldColor = Color(0xFF333333);
   static const Color disableColor = Color(0xFFC1C7D0);
+  static const Color bodyColorV2 = Color(0xFFF3F2F8);
 
   // tab color
   static const Color unselectedTabColor = Color(0xFFFFFFFF);

@@ -21,4 +21,7 @@ class Strings {
   static const decision_header = "Phê duyệt quyết định";
   static const decision_title_select = "Chọn";
   static const decision_title_advanced_search = "Tìm kiếm nâng cao";
+
+  // home_page
+  static const welcomeMessage = "Xin chào, ";
 }

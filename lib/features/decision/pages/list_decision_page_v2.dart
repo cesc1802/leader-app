@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:leader_app/features/decision/widgets/advance_action_widget.dart';
 import 'package:leader_app/features/decision/widgets/decision_info_widget.dart';
-import 'package:leader_app/features/decision/widgets/search_input_widget.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/resources/strings.dart';
 import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/widgets/rounded_icon_button.dart';
+import 'package:leader_app/widgets/search_input_widget.dart';
 import 'package:leader_app/widgets/title_appbar_widget.dart';
 
 class ListDecisionPageV2 extends StatefulWidget {
