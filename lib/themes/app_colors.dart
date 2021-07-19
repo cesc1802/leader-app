@@ -21,4 +21,9 @@ class AppColors {
 
   // date picker
   static const Color rangeSelectionColor = Color(0xFFECEBF5);
+
+  // decision_detail_page
+  static const Color decisionDetailLabelTextColor = Color(0xFF74788D);
+  static const Color decisionDetailTextColor = Color(0xFF48465B);
+  static const Color decisionDetailBodyColor = Color(0xFFE6EAF7);
 }

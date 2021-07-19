@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leader_app/features/decision/pages/detail_decision.dart';
+import 'package:leader_app/features/decision/pages/decision_detail.dart';
 import 'package:leader_app/features/decision/widgets/decision_title.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/resources/strings.dart';
@@ -74,7 +74,7 @@ class ApprovedDecision extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailDecision(),
+                            builder: (context) => DecisionDetail(),
                           ),
                         );
                       },

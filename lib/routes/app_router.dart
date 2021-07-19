@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:leader_app/features/app.dart';
 import 'package:leader_app/features/auth/pages/login_page.dart';
 import 'package:leader_app/features/auth/pages/welcome_page.dart';
+import 'package:leader_app/features/decision/pages/decision_detail.dart';
 import 'package:leader_app/features/decision/pages/list_decision_page.dart';
 import 'package:leader_app/features/decision/pages/list_decision_page_v2.dart';
 import 'package:leader_app/features/error/error_page.dart';
+import 'package:leader_app/features/home/pages/home_page.dart';
 import 'package:leader_app/routes/route_name.dart';
 
 class AppRouter {
@@ -16,10 +18,14 @@ class AppRouter {
         return buildRoute(settings, WelcomeScreen());
       case RouteNames.authLogin:
         return buildRoute(settings, AuthScreen());
+      case RouteNames.home:
+        return buildRoute(settings, HomePage());
       case RouteNames.decisionList:
         return buildRoute(settings, ListDecisionPage());
       case RouteNames.decisionListV2:
         return buildRoute(settings, ListDecisionPageV2());
+      case RouteNames.decisionDetail:
+        return buildRoute(settings, DecisionDetail());
       default:
         return buildRoute(settings, ErrorPage(routeName: settings.name));
     }

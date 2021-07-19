@@ -22,4 +22,6 @@ class UIData {
   static const String decisionDetailIcon = "$imageDir/decision-detail-icon.png";
 
   static const String userAvatar = "$imageDir/user-avatar.png";
+
+  static const String downArrowIcon = "$imageDir/down-arrow-icon.png";
 }

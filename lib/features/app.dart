@@ -21,11 +21,15 @@ class App extends StatelessWidget {
             SizedBox(height: 16),
             _buildButton(context, RouteNames.authLogin, "Auth Page"),
             SizedBox(height: 16),
+            _buildButton(context, RouteNames.home, "Home page"),
+            SizedBox(height: 16),
             _buildButton(
                 context, RouteNames.decisionList, "List Decision Page"),
             SizedBox(height: 16),
             _buildButton(
                 context, RouteNames.decisionListV2, "List Decision Page V2"),
+            SizedBox(height: 16),
+            _buildButton(context, RouteNames.decisionDetail, "Decision Detail"),
             SizedBox(height: 16),
           ],
         ),
