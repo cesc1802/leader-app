@@ -6,7 +6,7 @@ class UserNameWithPwdAuthCredential extends AuthCredential {
     required this.pwd,
   }) : super(_url);
 
-  static const String _url = '/login';
+  static const String _url = '/auth/login';
 
   @override
   Map<String, String> asMap() {

@@ -13,7 +13,10 @@ class AppAuth {
   }
 
   Future<void> saveData(LoginData login) async {
-    final tm = TokenManager()..accessToken = login?.accessToken ?? '';
+    // final tm = TokenManager()..accessToken = login.accessToken;
+    final tm = TokenManager();
+    tm.accessToken = login.accessToken;
+    tm.refreshToken = login.refreshToken;
     await tm.save();
   }
 

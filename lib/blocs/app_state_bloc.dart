@@ -8,7 +8,9 @@ enum AppState { loading, unAuthorized, authorized }
 class AppStateBloc implements BlocBase {
   final _appState = BehaviorSubject<AppState>.seeded(AppState.loading);
 
-  AppState? get appStateValue => _appState.stream.value;
+  Stream<AppState> get appStateStream => _appState.stream;
+
+  AppState? get appState => _appState.stream.value;
 
   AppState get initState => AppState.loading;
 
@@ -50,6 +52,6 @@ class AppStateBloc implements BlocBase {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    _appState.close();
   }
 }

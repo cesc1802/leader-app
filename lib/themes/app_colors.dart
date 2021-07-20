@@ -26,4 +26,6 @@ class AppColors {
   static const Color decisionDetailLabelTextColor = Color(0xFF74788D);
   static const Color decisionDetailTextColor = Color(0xFF48465B);
   static const Color decisionDetailBodyColor = Color(0xFFE6EAF7);
+
+  static const Color navBottomInactiveColor = Color(0xFFDCDDE2);
 }

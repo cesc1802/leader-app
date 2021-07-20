@@ -12,7 +12,7 @@ class Validators {
   }
 
   static bool isValidPassword(String? pwd) {
-    return pwd != null && pwd.length >= 6;
+    return pwd!.length >= 6;
   }
 
   final validateNormalText = (String field) =>

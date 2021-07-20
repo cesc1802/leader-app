@@ -26,7 +26,7 @@ class ApiProvider {
 
   ApiProvider._internal() {
     final baseOptions =
-        BaseOptions(baseUrl: 'http://10.0.25.183/appLanhDao/api/v1');
+        BaseOptions(baseUrl: 'http://10.0.25.183:3378/appLanhDao/api/v1');
     _dio = Dio(baseOptions);
     setupInterceptors();
     (_dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson;
@@ -42,7 +42,7 @@ class ApiProvider {
         onRequest: (options, handlers) async {
           logger.log(
               'REQUEST[${options.method}] => PATH: ${options.baseUrl + options.path}');
-          if (_accessToken.isEmpty) {
+          if (_accessToken.isEmpty && !options.path.contains("/auth/login")) {
             _dio.lock();
             return SharedPreferences.getInstance().then((sharedPreferences) {
               TokenManager().load(sharedPreferences);
@@ -53,7 +53,8 @@ class ApiProvider {
               return handlers.next(options);
             });
           }
-          options.headers['Authorization'] = 'Bearer $_accessToken';
+          if (!options.path.contains("/auth/login"))
+            options.headers['Authorization'] = 'Bearer $_accessToken';
           return handlers.next(options);
         },
         onResponse: (Response response, handlers) {
@@ -61,13 +62,7 @@ class ApiProvider {
         },
         onError: (DioError e, handlers) async {
           if (e.response == null) {
-            // return ErrorResponse(
-            //   code: 'ErrLostConnection',
-            //   log: 'Lost connection',
-            //   statusCode: 6996,
-            //   message:
-            //       'Your connection is gone, please try again', // need translate
-            // );
+            throw NoInternetException(requestOptions: e.requestOptions);
           } else if (e.response!.statusCode == 401) {
             try {
               // _dio.lock();
@@ -192,4 +187,19 @@ class ApiProvider {
     if (res is! ErrorResponse) return res;
     throw res;
   }
+}
+
+class UnAuthorizeException extends DioError {
+  UnAuthorizeException({required requestOptions})
+      : super(requestOptions: requestOptions);
+}
+
+class TimeoutException extends DioError {
+  TimeoutException({required requestOptions})
+      : super(requestOptions: requestOptions);
+}
+
+class NoInternetException extends DioError {
+  NoInternetException({required requestOptions})
+      : super(requestOptions: requestOptions);
 }
