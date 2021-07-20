@@ -13,7 +13,6 @@ class AppAuth {
   }
 
   Future<void> saveData(LoginData login) async {
-    // final tm = TokenManager()..accessToken = login.accessToken;
     final tm = TokenManager();
     tm.accessToken = login.accessToken;
     tm.refreshToken = login.refreshToken;
@@ -40,7 +39,10 @@ class Login {
   final LoginData data;
   final int code;
 
-  Login({required this.code, required this.data});
+  Login({
+    required this.code,
+    required this.data,
+  });
 
   factory Login.fromJSON(Map<String, dynamic> json) {
     return Login(code: 200, data: LoginData.fromJSON(json['data']));

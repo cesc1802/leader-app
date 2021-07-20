@@ -19,7 +19,7 @@ class _ListDecisionPageState extends State<ListDecisionPage>
   @override
   void initState() {
     super.initState();
-    tabController = TabController(vsync: this, length: 7);
+    tabController = TabController(vsync: this, length: 3);
     tabController.addListener(() {
       if (tabController.index == 6) {
         tabController.animateTo(5);
@@ -91,22 +91,10 @@ class _ListDecisionPageState extends State<ListDecisionPage>
                       text: "Quyết định 02",
                     ),
                     Tab(
-                      text: "Quyết định 02",
+                      text: "Quyết định 18",
                     ),
                     Tab(
                       text: "Quyết định 02",
-                    ),
-                    Tab(
-                      text: "Quyết định 02",
-                    ),
-                    Tab(
-                      text: "Quyết định 02",
-                    ),
-                    Tab(
-                      text: "Quyết định 02",
-                    ),
-                    Tab(
-                      text: "",
                     ),
                   ],
                 ),

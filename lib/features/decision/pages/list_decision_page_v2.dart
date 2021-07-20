@@ -22,18 +22,20 @@ class _ListDecisionPageV2State extends State<ListDecisionPageV2>
   @override
   void initState() {
     super.initState();
-    tabController = TabController(vsync: this, length: 7);
+    tabController = TabController(vsync: this, length: 3);
+
     tabController.addListener(() {
       if (tabController.index == 6) {
         tabController.animateTo(5);
       }
     });
+
     scrollController = ScrollController();
     scrollController.addListener(() {
-      // need to show app title
+      //TODO: need to show app title
       if (scrollController.offset >=
           scrollController.position.maxScrollExtent - 45) {
-        // bad code need to refactor with rxDart
+        //TODO: bad code need to refactor with rxDart
         if (!showTitle) {
           setState(() {
             showTitle = true;
@@ -141,22 +143,10 @@ class _ListDecisionPageV2State extends State<ListDecisionPageV2>
                         text: "Quyết định 02",
                       ),
                       Tab(
-                        text: "Quyết định 02",
+                        text: "Quyết định 18",
                       ),
                       Tab(
-                        text: "Quyết định 02",
-                      ),
-                      Tab(
-                        text: "Quyết định 02",
-                      ),
-                      Tab(
-                        text: "Quyết định 02",
-                      ),
-                      Tab(
-                        text: "Quyết định 02",
-                      ),
-                      Tab(
-                        text: "",
+                        text: "Quyết định 20",
                       ),
                     ],
                   ),
@@ -179,7 +169,7 @@ class _ListDecisionPageV2State extends State<ListDecisionPageV2>
                         child: TabBarView(
                           physics: NeverScrollableScrollPhysics(),
                           controller: tabController,
-                          children: <Widget>[
+                          children: [
                             Container(
                               child: ListView.separated(
                                 itemBuilder: (context, index) {
@@ -210,39 +200,39 @@ class _ListDecisionPageV2State extends State<ListDecisionPageV2>
                                     Gaps.vGap16,
                               ),
                             ),
-                            Container(
-                              child: ListView.separated(
-                                itemBuilder: (context, index) {
-                                  return DecisionInfoWidget();
-                                },
-                                itemCount: 1000,
-                                separatorBuilder: (context, index) =>
-                                    Gaps.vGap16,
-                              ),
-                            ),
-                            Container(
-                              child: ListView.separated(
-                                itemBuilder: (context, index) {
-                                  return DecisionInfoWidget();
-                                },
-                                itemCount: 1000,
-                                separatorBuilder: (context, index) =>
-                                    Gaps.vGap16,
-                              ),
-                            ),
-                            Container(
-                              child: ListView.separated(
-                                itemBuilder: (context, index) {
-                                  return DecisionInfoWidget();
-                                },
-                                itemCount: 1000,
-                                separatorBuilder: (context, index) =>
-                                    Gaps.vGap16,
-                              ),
-                            ),
-                            Center(
-                              child: Text("It's sunny here"),
-                            ),
+                            // Container(
+                            //   child: ListView.separated(
+                            //     itemBuilder: (context, index) {
+                            //       return DecisionInfoWidget();
+                            //     },
+                            //     itemCount: 1000,
+                            //     separatorBuilder: (context, index) =>
+                            //         Gaps.vGap16,
+                            //   ),
+                            // ),
+                            // Container(
+                            //   child: ListView.separated(
+                            //     itemBuilder: (context, index) {
+                            //       return DecisionInfoWidget();
+                            //     },
+                            //     itemCount: 1000,
+                            //     separatorBuilder: (context, index) =>
+                            //         Gaps.vGap16,
+                            //   ),
+                            // ),
+                            // Container(
+                            //   child: ListView.separated(
+                            //     itemBuilder: (context, index) {
+                            //       return DecisionInfoWidget();
+                            //     },
+                            //     itemCount: 1000,
+                            //     separatorBuilder: (context, index) =>
+                            //         Gaps.vGap16,
+                            //   ),
+                            // ),
+                            // Center(
+                            //   child: Text("It's sunny here"),
+                            // ),
                           ],
                         ),
                       ),

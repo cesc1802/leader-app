@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leader_app/resources/dimens.dart';
 
 class CategoryItemWidget extends StatelessWidget {
   final String image;
@@ -15,7 +16,7 @@ class CategoryItemWidget extends StatelessWidget {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(Dimens.gap_dp16),
           child: Image.asset(image),
         ),
         Positioned(
@@ -24,7 +25,7 @@ class CategoryItemWidget extends StatelessWidget {
           bottom: 0,
           right: 0,
           child: Container(
-            padding: EdgeInsets.all(12),
+            padding: EdgeInsets.all(Dimens.gap_dp12),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.bottomRight,
@@ -34,7 +35,7 @@ class CategoryItemWidget extends StatelessWidget {
                   Colors.black.withOpacity(.1)
                 ],
               ),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(Dimens.gap_dp16),
             ),
           ),
         ),

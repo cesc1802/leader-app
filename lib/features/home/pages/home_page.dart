@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:leader_app/features/home/widgets/category_item_widget.dart';
 import 'package:leader_app/features/home/widgets/header_widget.dart';
 import 'package:leader_app/resources/dimens.dart';
+import 'package:leader_app/routes/route_name.dart';
 import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/utils/ui_data.dart';
 import 'package:leader_app/widgets/body_wrapper.dart';
@@ -57,18 +58,28 @@ class _HomePageState extends State<HomePage> {
                           child: Row(
                             children: [
                               CategoryItemWidget(
-                                image: UIData.categoryImage1,
+                                image: UIData.categoryImage2,
                                 title: "Tra cứu công dân",
                               ),
                               Gaps.hGap16,
                               CategoryItemWidget(
-                                image: UIData.categoryImage2,
+                                image: UIData.categoryImage1,
                                 title: "Tra cứu phương tiện",
+                              ),
+                              Gaps.hGap16,
+                              InkWell(
+                                onTap: _gotoDecisionListPageV2,
+                                child: GestureDetector(
+                                  child: CategoryItemWidget(
+                                    image: UIData.categoryImage3,
+                                    title: "Phê duyệt quyết định",
+                                  ),
+                                ),
                               ),
                               Gaps.hGap16,
                               CategoryItemWidget(
                                 image: UIData.categoryImage3,
-                                title: "Phê duyệt quyết định",
+                                title: "Lịch sử phê duyệt",
                               ),
                             ],
                           ),
@@ -83,5 +94,13 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void _gotoDecisionListPageV2() {
+    Navigator.of(context).pushNamed(RouteNames.decisionListV2);
+  }
+
+  void _gotoDecisionListPage() {
+    Navigator.of(context).pushNamed(RouteNames.decisionList);
   }
 }

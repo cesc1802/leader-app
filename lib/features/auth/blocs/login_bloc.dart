@@ -6,7 +6,7 @@ import 'package:leader_app/utils/validators.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoginBloc extends BlocBase with Validators {
-  final _userNameCtrl = BehaviorSubject<String>.seeded("dev@gmail.com");
+  final _userNameCtrl = BehaviorSubject<String>.seeded("");
   Stream<String> get userNameStream => _userNameCtrl.stream;
   ValueChanged<String> get onUserNameChanged => _userNameCtrl.sink.add;
   String? get userNameVal => _userNameCtrl.value;
