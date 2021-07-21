@@ -1,17 +1,26 @@
-import 'package:leader_app/features/decision/models/decision_data.dart';
-
 class Decision {
-  final DecisionData data;
+  final int decisionId;
+  final String decisionNumber;
+  final String violatorName;
+  final String remainTime;
+  final String driverLicenseNumber;
 
   Decision({
-    required this.data,
+    required this.decisionId,
+    required this.decisionNumber,
+    required this.violatorName,
+    required this.remainTime,
+    required this.driverLicenseNumber,
   });
+
   factory Decision.fromJSON(Map<String, dynamic> json) {
-    int code = json['code'];
-    var data;
-    if (code == 200) {
-      data = DecisionData.fromJSON(json['data']);
-    }
-    return Decision(data: data);
+    return Decision(
+      decisionId: json['id'],
+      decisionNumber: json['soQuyetDinh'],
+      violatorName: json['tenNguoiNvp'],
+      remainTime:
+          json['thoiGianConLai'].toString() + " " + json['donViThoiGianConLai'],
+      driverLicenseNumber: json['bienKiemSoat'],
+    );
   }
 }

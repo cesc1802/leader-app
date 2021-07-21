@@ -1,22 +1,18 @@
-class DecisionData {
-  final String decisionNumber;
-  final String violatorName;
-  final String remainTime;
-  final String driverLicenseNumber;
+import 'package:leader_app/features/decision/models/decision.dart';
+import 'package:leader_app/utils/paging.dart';
 
-  DecisionData({
-    required this.decisionNumber,
-    required this.violatorName,
-    required this.remainTime,
-    required this.driverLicenseNumber,
+class DecisionResponse {
+  final List<Decision> decisions;
+  final Paging paging;
+
+  DecisionResponse({
+    required this.decisions,
+    required this.paging,
   });
 
-  factory DecisionData.fromJSON(Map<String, dynamic> json) {
-    return DecisionData(
-      decisionNumber: json['decisionNumber'],
-      violatorName: json['violatorName'],
-      remainTime: json['remainTime'],
-      driverLicenseNumber: json['driverLicenseNumber'],
-    );
-  }
+  DecisionResponse.fromJSON(Map<String, dynamic> json)
+      : decisions = (json["data"] as List)
+            .map((i) => new Decision.fromJSON(i))
+            .toList(),
+        paging = Paging.fromJSON(json['paging']);
 }

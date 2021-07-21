@@ -5,9 +5,12 @@ abstract class GetListRepo<T> {
 
   String get url;
 
-  Future<List<T>> getData() async {
+  Future<List<T>> listData(int page, int pageSize) async {
     try {
-      final res = await _apiProvider.get(url);
+      final res = await _apiProvider.get(
+        url,
+        queryParameters: {"page": page, "pageSize": pageSize},
+      );
 
       if (res.statusCode != 200) {
         return <T>[];

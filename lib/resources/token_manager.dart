@@ -9,7 +9,8 @@ class TokenManager {
   String refreshToken = '';
   bool isRefreshing = false;
 
-  Dio get getDio => Dio(BaseOptions(baseUrl: 'https://api.food.200lab.dev/v1'));
+  Dio get getDio =>
+      Dio(BaseOptions(baseUrl: 'http://10.0.25.183:3378/appLanhDao/api/v1'));
 
   factory TokenManager() => _instance;
 
@@ -32,8 +33,8 @@ class TokenManager {
     }
     isRefreshing = true;
     try {
-      final res =
-          await getDio.post('/auth/refresh', data: {'token': refreshToken});
+      final res = await getDio
+          .post('/auth/refresh', data: {'refreshToken': refreshToken});
 
       if (res == null || res.data == null) {
         return false;

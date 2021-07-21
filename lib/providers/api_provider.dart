@@ -61,46 +61,52 @@ class ApiProvider {
           return handlers.next(response);
         },
         onError: (DioError e, handlers) async {
+          // return handlers
+          //     .next(NoInternetException(requestOptions: e.requestOptions));
           if (e.response == null) {
             throw NoInternetException(requestOptions: e.requestOptions);
           } else if (e.response!.statusCode == 401) {
             try {
-              // _dio.lock();
-              // await TokenManager().refresh().then((ok) {
-              //   _dio.unlock();
-              // if(!isOk)
-              //   BlocProvider.of<AppStateBloc>(MyApp.navigatorKey.currentContext)
-              //       .logout();
-              // });
+              _dio.lock();
+              await TokenManager().refresh().then((ok) {
+                _dio.unlock();
+                print(ok);
+                // if (!ok)
+                //   BlocProvider.of<AppStateBloc>(
+                //           MyApp.navigatorKey.currentContext)
+                //       .logout();
+              });
             } catch (e) {
               print(e);
             }
-            // return e;
-          } else if (e.response!.statusCode == 503) {
-            // return ErrorResponse(
-            //   code: 'ErrServerGoingDown',
-            //   log: 'Server die',
-            //   statusCode: 9669,
-            //   message:
-            //       'Service is unavailable now, please try again', // need translate
+            // return handlers.next(
+            //   UnAuthorizeException(
+            //     message: "UnAuthorizeException",
+            //     requestOptions: e.requestOptions,
+            //   ),
             // );
+          } else if (e.response!.statusCode == 503) {
+            return handlers.next(
+              UnAuthorizeException(
+                message: "Server going down",
+                requestOptions: e.requestOptions,
+              ),
+            );
           } else if (e.response!.statusCode == 400) {
             if (e.response!.data is String) {
-              // final Map<String, dynamic> data = json.decode(e.response!.data);
-              // final Response r = ErrorResponse.fromJson(data);
-              // return r;
-            } else {
-              // final Response err = ErrorResponse.fromJson(e.response!.data);
-              // return err;
-            }
+              handlers.next(
+                BadRequestException(
+                  message: "message",
+                  requestOptions: e.requestOptions,
+                ),
+              );
+            } else {}
           }
-
-          // return ErrorResponse(
-          //   code: 'ErrUndefined',
-          //   log: 'Undefined error',
-          //   statusCode: 0,
-          //   message: 'Something went wrong', // need translate
-          // );
+          return handlers.next(
+            NoInternetException(
+              requestOptions: e.requestOptions,
+            ),
+          );
         },
       ),
     );
@@ -190,8 +196,31 @@ class ApiProvider {
 }
 
 class UnAuthorizeException extends DioError {
-  UnAuthorizeException({required requestOptions})
-      : super(requestOptions: requestOptions);
+  UnAuthorizeException({
+    required this.message,
+    this.code,
+    this.log,
+    required requestOptions,
+  }) : super(requestOptions: requestOptions);
+
+  String? code;
+  String? log;
+  final int statusCode = 401;
+  String message;
+}
+
+class BadRequestException extends DioError {
+  BadRequestException({
+    required this.message,
+    this.code,
+    this.log,
+    required requestOptions,
+  }) : super(requestOptions: requestOptions);
+
+  String? code;
+  String? log;
+  final int statusCode = 400;
+  String message;
 }
 
 class TimeoutException extends DioError {

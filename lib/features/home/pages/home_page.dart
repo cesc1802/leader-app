@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Gaps.hGap16,
                               InkWell(
-                                onTap: _gotoDecisionListPageV2,
+                                onTap: _gotoDecisionListPage,
                                 child: GestureDetector(
                                   child: CategoryItemWidget(
                                     image: UIData.categoryImage3,

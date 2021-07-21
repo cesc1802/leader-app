@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:leader_app/features/decision/widgets/advance_action_widget.dart';
-import 'package:leader_app/features/decision/widgets/decision_info_widget.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/resources/strings.dart';
 import 'package:leader_app/themes/app_colors.dart';
@@ -173,7 +172,7 @@ class _ListDecisionPageV2State extends State<ListDecisionPageV2>
                             Container(
                               child: ListView.separated(
                                 itemBuilder: (context, index) {
-                                  return DecisionInfoWidget();
+                                  return Text("data");
                                 },
                                 itemCount: 1000,
                                 separatorBuilder: (context, index) =>
@@ -183,7 +182,7 @@ class _ListDecisionPageV2State extends State<ListDecisionPageV2>
                             Container(
                               child: ListView.separated(
                                 itemBuilder: (context, index) {
-                                  return DecisionInfoWidget();
+                                  return Text("data");
                                 },
                                 itemCount: 1000,
                                 separatorBuilder: (context, index) =>
@@ -193,7 +192,7 @@ class _ListDecisionPageV2State extends State<ListDecisionPageV2>
                             Container(
                               child: ListView.separated(
                                 itemBuilder: (context, index) {
-                                  return DecisionInfoWidget();
+                                  return Text("data");
                                 },
                                 itemCount: 1000,
                                 separatorBuilder: (context, index) =>

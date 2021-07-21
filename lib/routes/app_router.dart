@@ -56,6 +56,27 @@ class AppRouter {
         onGenerateRoute: generateRoute,
       );
 
+  static Route<dynamic> authorizedRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case RouteNames.welcome:
+        return buildRoute(settings, WelcomeScreen());
+      case RouteNames.authLogin:
+        return buildRoute(settings, AuthScreen());
+      case RouteNames.home:
+        return buildRoute(settings, HomePage());
+      case RouteNames.decisionList:
+        return buildRoute(settings, ListDecisionPage());
+      case RouteNames.decisionListV2:
+        return buildRoute(settings, ListDecisionPageV2());
+      case RouteNames.decisionDetail:
+        return buildRoute(settings, DecisionDetail());
+      case RouteNames.navBottom:
+        return buildRoute(settings, NavBottom());
+      default:
+        return buildRoute(settings, ErrorPage(routeName: settings.name));
+    }
+  }
+
   // static Route<dynamic> unAuthorizedRoute(RouteSettings settings) {
   //   switch (settings.name) {
   //     case '/':

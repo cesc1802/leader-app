@@ -1,26 +1,26 @@
 import 'package:leader_app/blocs/bloc_provider.dart';
+import 'package:leader_app/features/decision/helper/decision_state_helper.dart';
+import 'package:leader_app/features/decision/models/decision_data.dart';
+import 'package:leader_app/features/decision/repos/decisioin_repository.dart';
+import 'package:rxdart/rxdart.dart';
 
 class DecisionBloc extends BlocBase {
-  // final _userNameCtrl = BehaviorSubject<String>.seeded("");
-  // Stream<String> get userNameStream => _userNameCtrl.stream;
-  // ValueChanged<String> get onUserNameChanged => _userNameCtrl.sink.add;
-  // String? get userNameVal => _userNameCtrl.value;
-  //
-  // ///  PasswordController
-  // final _pwdCtrl = BehaviorSubject<String>.seeded("");
-  // Stream<String> get pwdStream => _pwdCtrl.stream;
-  // ValueChanged<String> get onPasswordChanged => _pwdCtrl.sink.add;
-  // String? get pwdValue => _pwdCtrl.value;
+  final _decisionCtrl = BehaviorSubject<DecisionResponse>();
 
-  // final String decisionNumber;
-  // final String violatorName;
-  // final String remainTime;
-  // final String driverLicenseNumber;
+  // For Stream
+  Stream<DecisionResponse> get decisionResponseStream => _decisionCtrl.stream;
 
-  // final _decisionNumber
+  final _decisionRepo = DecisionRepository();
+
+  Future<DecisionState> getListDecision(int page, int limit) async {
+    DecisionResponse list = await _decisionRepo.listDecision(page, limit);
+    _decisionCtrl.add(list);
+    return DecisionState.success;
+  }
 
   @override
   void dispose() {
     // TODO: implement dispose
+    _decisionCtrl.close();
   }
 }

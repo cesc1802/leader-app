@@ -47,7 +47,7 @@ mixin DialogMixin<T extends StatefulWidget> on State<T> {
       builder: (ctx) => CupertinoAlertDialog(
         title: const Padding(
           padding: EdgeInsets.only(bottom: 8.0),
-          child: Text('Error found'),
+          child: Text('Lỗi'),
         ),
         content: Text(content),
         actions: <Widget>[
