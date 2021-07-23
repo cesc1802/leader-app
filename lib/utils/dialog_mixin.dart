@@ -61,4 +61,25 @@ mixin DialogMixin<T extends StatefulWidget> on State<T> {
       ),
     );
   }
+
+  Future<T?> showMessage(String content) {
+    return showDialog(
+      context: context,
+      builder: (ctx) => CupertinoAlertDialog(
+        title: const Padding(
+          padding: EdgeInsets.only(bottom: 8.0),
+          child: Text('Thành công'),
+        ),
+        content: Text(content),
+        actions: [
+          CupertinoActionSheetAction(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Ok'),
+          )
+        ],
+      ),
+    );
+  }
 }

@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
     return BlocProvider(
       bloc: _appStateBloc,
-      child: StreamBuilder<Object>(
+      child: StreamBuilder<AppState>(
         stream: _appStateBloc.appStateStream,
         initialData: _appStateBloc.initState,
         builder: (context, snapshot) {
@@ -96,3 +96,124 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     );
   }
 }
+
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_slidable/flutter_slidable.dart';
+//
+// void main() => runApp(MyApp());
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter Demo',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: MyHomePage(title: 'Dismiss Close Demo'),
+//     );
+//   }
+// }
+//
+// class MyHomePage extends StatefulWidget {
+//   MyHomePage({Key? key, required this.title}) : super(key: key);
+//
+//   final String title;
+//
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<MyHomePage> {
+//   void _handleCloseAfterTap(BuildContext context) {
+//     print("_handleCloseAfterTap");
+//     Slidable.of(context)?.close();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     var controller = SlidableController();
+//     return Scaffold(
+//       body: ListView.builder(
+//           itemCount: 10,
+//           itemBuilder: (context, index) {
+//             return Slidable(
+//               controller: controller,
+//               key: Key("$index"),
+//               dismissal: SlidableDismissal(
+//                 child: SlidableDrawerDismissal(),
+//                 onWillDismiss: (actionType) {
+//                   showCupertinoModalPopup(
+//                     context: context,
+//                     builder: (BuildContext context) => CupertinoActionSheet(
+//                       title: const Text('Choose Options'),
+//                       message: const Text('Your options are '),
+//                       actions: <Widget>[
+//                         CupertinoActionSheetAction(
+//                           child: const Text('Close the slidable'),
+//                           onPressed: () {
+//                             Navigator.pop(context, 'One');
+//                           },
+//                         ),
+//                         CupertinoActionSheetAction(
+//                           child: const Text('Two'),
+//                           onPressed: () {
+//                             Navigator.pop(context, 'Two');
+//                           },
+//                         )
+//                       ],
+//                     ),
+//                   ).then((onValue) {
+//                     controller.activeState!.close();
+//                   });
+//                   return true;
+//                 },
+//               ),
+//               actionPane: SlidableDrawerActionPane(),
+//               actionExtentRatio: 0.25,
+//               child: Container(
+//                 color: Colors.white,
+//                 child: ListTile(
+//                   leading: CircleAvatar(
+//                     backgroundColor: Colors.indigoAccent,
+//                     child: Text('t'),
+//                     foregroundColor: Colors.white,
+//                   ),
+//                   title: Text('Tile n°'),
+//                   subtitle: Text('SlidableDrawerDelegate'),
+//                 ),
+//               ),
+//               actions: <Widget>[
+//                 IconSlideAction(
+//                   caption: 'Archive',
+//                   color: Colors.blue,
+//                   icon: Icons.archive,
+//                   onTap: () => _handleCloseAfterTap(context),
+//                 ),
+//                 IconSlideAction(
+//                   caption: 'Share',
+//                   color: Colors.indigo,
+//                   icon: Icons.share,
+//                 ),
+//               ],
+//               secondaryActions: <Widget>[
+//                 IconSlideAction(
+//                   caption: 'More',
+//                   color: Colors.black45,
+//                   icon: Icons.more_horiz,
+//                 ),
+//                 IconSlideAction(
+//                   caption: 'Delete',
+//                   color: Colors.red,
+//                   icon: Icons.delete,
+//                 ),
+//               ],
+//             );
+//           }),
+//       appBar: AppBar(
+//         title: Text(widget.title),
+//       ),
+//     );
+//   }
+// }
