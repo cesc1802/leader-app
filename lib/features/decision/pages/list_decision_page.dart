@@ -26,6 +26,7 @@ class _ListDecisionPageState extends DecisionStateHelper<ListDecisionPage>
   final ScrollController _scrollController = ScrollController();
 
   final decisionBloc = DecisionBloc();
+  var _isLoadMore = false;
 
   @override
   bool isLoading = false;
@@ -46,11 +47,17 @@ class _ListDecisionPageState extends DecisionStateHelper<ListDecisionPage>
   void didChangeDependencies() {
     _scrollController
       ..addListener(() {
-        print(_scrollController.position.pixels);
-        print(_scrollController.position.maxScrollExtent);
+        // print(_scrollController.position.pixels);
+        // print(_scrollController.position.maxScrollExtent);
         if (_scrollController.position.pixels + 30 >=
             _scrollController.position.maxScrollExtent) {
-          decisionBloc.loadMoreDecision();
+          if (_isLoadMore) {
+            return;
+          }
+          _isLoadMore = true;
+          decisionBloc
+              .loadMoreDecision()
+              .whenComplete(() => _isLoadMore = false);
         }
       });
     super.didChangeDependencies();
@@ -62,7 +69,7 @@ class _ListDecisionPageState extends DecisionStateHelper<ListDecisionPage>
       isLoading = true;
     });
     try {
-      var res = await decisionBloc.getListDecision(1, 5);
+      var res = await decisionBloc.getListDecision(1, 7);
       handleDecisionState(res);
     } on DioError catch (e) {
       setState(() {

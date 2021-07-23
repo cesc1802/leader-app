@@ -43,7 +43,7 @@ class DecisionBloc extends BlocBase {
     //TODO: store to local, purpose remove case
     _decisions.addAll(list.decisions.toSet());
 
-    totalRecord = list.paging.limit!;
+    totalRecord = list.decisions.length;
     currentPage = page;
 
     return DecisionState.success;
@@ -51,14 +51,14 @@ class DecisionBloc extends BlocBase {
 
   Future<DecisionState> loadMoreDecision() async {
     ListDecisionResponse list =
-        await _decisionRepo.listDecision(currentPage, 5);
+        await _decisionRepo.listDecision(currentPage + 1, 5);
 
-    _inDecisions.add(list.decisions);
+    _inDecisions.add(_decisionsController.stream.value! + list.decisions);
 
     //TODO: store to local, purpose remove case
     _decisions.addAll(list.decisions.toSet());
 
-    totalRecord = list.paging.limit!;
+    totalRecord += list.decisions.length;
     currentPage++;
 
     return DecisionState.success;
@@ -92,7 +92,7 @@ class DecisionBloc extends BlocBase {
         (_) => TimerStream(
           true,
           Duration(
-            seconds: 2,
+            seconds: 1,
           ),
         ),
       );
