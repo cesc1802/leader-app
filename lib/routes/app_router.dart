@@ -4,6 +4,7 @@ import 'package:leader_app/features/app_nav_bottom.dart';
 import 'package:leader_app/features/auth/pages/login_page.dart';
 import 'package:leader_app/features/auth/pages/welcome_page.dart';
 import 'package:leader_app/features/decision/pages/decision_detail.dart';
+import 'package:leader_app/features/decision/pages/history_approved_decision.dart';
 import 'package:leader_app/features/decision/pages/list_decision_page.dart';
 import 'package:leader_app/features/decision/pages/list_decision_page_v2.dart';
 import 'package:leader_app/features/error/error_page.dart';
@@ -36,6 +37,8 @@ class AppRouter {
               ));
         }
         return buildRoute(settings, ErrorPage(routeName: settings.name));
+      case RouteNames.historyApprovedDecision:
+        return buildRoute(settings, HistoryApprovedDecisionPage());
       case RouteNames.navBottom:
         return buildRoute(settings, NavBottom());
       default:

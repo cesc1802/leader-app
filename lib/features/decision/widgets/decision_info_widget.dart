@@ -136,7 +136,7 @@ class _DecisionInfoWidgetState extends DecisionStateHelper<DecisionInfoWidget>
                                     color: AppColors.decisionItemSubTitleColor),
                           ),
                           Text(
-                            widget.decision.remainTime,
+                            "Còn " + widget.decision.remainTime,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline3!

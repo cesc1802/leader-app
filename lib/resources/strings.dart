@@ -15,6 +15,7 @@ class Strings {
   static const login_save_account = "Lưu đăng nhập";
 
   static const approve_decision = "Phê duyệt quyết định";
+  static const history_approve_decision = "Lịch sử phê duyệt";
 
   static const home_category = "Danh mục";
   static const decision_detail_header = "Quyết định";

@@ -37,17 +37,18 @@ class _HomePageState extends State<HomePage> {
                         title: "Thông báo",
                         actionTitle: "Xem thêm",
                         child: ListView.separated(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              return NotifyItemWidget(
-                                title:
-                                    "Quyết định số: G33.23.23.001-981-21-000087\nsắp hết hạn phê duyệt ",
-                                time: "10:03:13, 12/9/2020",
-                              );
-                            },
-                            separatorBuilder: (_, __) => Gaps.vGap12,
-                            itemCount: 3),
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return NotifyItemWidget(
+                              title:
+                                  "Quyết định số: G33.23.23.001-981-21-000087\nsắp hết hạn phê duyệt ",
+                              time: "10:03:13, 12/9/2020",
+                            );
+                          },
+                          separatorBuilder: (_, __) => Gaps.vGap12,
+                          itemCount: 3,
+                        ),
                       ),
                       Gaps.vGap28,
                       SectionWidget(
@@ -57,16 +58,6 @@ class _HomePageState extends State<HomePage> {
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              CategoryItemWidget(
-                                image: UIData.categoryImage2,
-                                title: "Tra cứu công dân",
-                              ),
-                              Gaps.hGap16,
-                              CategoryItemWidget(
-                                image: UIData.categoryImage1,
-                                title: "Tra cứu phương tiện",
-                              ),
-                              Gaps.hGap16,
                               InkWell(
                                 onTap: _gotoDecisionListPage,
                                 child: GestureDetector(
@@ -77,10 +68,24 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Gaps.hGap16,
-                              CategoryItemWidget(
-                                image: UIData.categoryImage3,
-                                title: "Lịch sử phê duyệt",
+                              InkWell(
+                                onTap: _gotoHistoryApprovedDecision,
+                                child: CategoryItemWidget(
+                                  image: UIData.historyApproved,
+                                  title: "Lịch sử phê duyệt",
+                                ),
                               ),
+                              Gaps.hGap16,
+                              CategoryItemWidget(
+                                image: UIData.categoryImage2,
+                                title: "Tra cứu công dân",
+                              ),
+                              Gaps.hGap16,
+                              CategoryItemWidget(
+                                image: UIData.categoryImage1,
+                                title: "Tra cứu phương tiện",
+                              ),
+                              Gaps.hGap16,
                             ],
                           ),
                         ),
@@ -102,5 +107,9 @@ class _HomePageState extends State<HomePage> {
 
   void _gotoDecisionListPage() {
     Navigator.of(context).pushNamed(RouteNames.decisionList);
+  }
+
+  void _gotoHistoryApprovedDecision() {
+    Navigator.of(context).pushNamed(RouteNames.historyApprovedDecision);
   }
 }

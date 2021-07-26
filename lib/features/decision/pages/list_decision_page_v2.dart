@@ -4,7 +4,6 @@ import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/resources/strings.dart';
 import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/widgets/rounded_icon_button.dart';
-import 'package:leader_app/widgets/search_input_widget.dart';
 import 'package:leader_app/widgets/title_appbar_widget.dart';
 
 class ListDecisionPageV2 extends StatefulWidget {
@@ -103,7 +102,7 @@ class _ListDecisionPageV2State extends State<ListDecisionPageV2>
                         Gaps.vGap16,
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 28),
-                          child: SearchInputWidget(),
+                          // child: SearchInputWidget(),
                         ),
                         Gaps.vGap16,
                       ],

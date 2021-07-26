@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:leader_app/blocs/bloc_provider.dart';
 import 'package:leader_app/features/decision/helper/decision_state_helper.dart';
 import 'package:leader_app/features/decision/models/decision.dart';
@@ -11,8 +12,13 @@ class DecisionBloc extends BlocBase {
   var totalRecord = 0;
   var currentPage = 1;
 
+  final Set<Decision> _histDecisions = Set<Decision>();
+  var totalRecordHist = 0;
+  var currentPageHist = 1;
+
   DecisionBloc() {
     _decisionRemoveController.listen(_handleRemoveDecision);
+    _histDecisionRemoveController.listen(_handleRemoveHistDecision);
   }
 
   void _handleRemoveDecision(Decision decision) {
@@ -20,11 +26,18 @@ class DecisionBloc extends BlocBase {
     _notify();
   }
 
+  void _handleRemoveHistDecision(Decision decision) {
+    _histDecisions.remove(decision);
+    // _notify();
+  }
+
   BehaviorSubject<Decision> _decisionRemoveController =
       BehaviorSubject<Decision>();
   Sink<Decision> get inRemoveDecision => _decisionRemoveController.sink;
 
-  BehaviorSubject<int> _currentPageController = BehaviorSubject<int>.seeded(1);
+  BehaviorSubject<Decision> _histDecisionRemoveController =
+      BehaviorSubject<Decision>();
+  Sink<Decision> get inHistRemoveDecision => _histDecisionRemoveController.sink;
 
   final _listDecisionController = BehaviorSubject<List<Decision>>();
   final _updDecisionCtrl = BehaviorSubject<UpdateDecisionResponse>();
@@ -63,6 +76,36 @@ class DecisionBloc extends BlocBase {
     return DecisionState.success;
   }
 
+  Future<DecisionState> getHistoryApprovedDecision(int page, int limit) async {
+    ListDecisionResponse list =
+        await _decisionRepo.listHistoryDecision(page, limit);
+
+    //TODO: add to stream
+    _inDecisions.add(list.decisions);
+
+    //TODO: store to local, purpose remove case
+    _histDecisions.addAll(list.decisions.toSet());
+
+    totalRecordHist = list.decisions.length;
+    currentPageHist = page;
+
+    return DecisionState.success;
+  }
+
+  Future<DecisionState> loadMoreHistDecision() async {
+    ListDecisionResponse list =
+        await _decisionRepo.listHistoryDecision(currentPage + 1, 5);
+
+    _inDecisions.add(_decisionsController.stream.value! + list.decisions);
+
+    //TODO: store to local, purpose remove case
+    _histDecisions.addAll(list.decisions.toSet());
+
+    totalRecordHist += list.decisions.length;
+
+    return DecisionState.success;
+  }
+
   Future<DecisionState> approvedDecision(int id) async {
     UpdateDecisionResponse result = await _decisionRepo.approvedDecision(id);
     _updDecisionCtrl.add(result);
@@ -96,4 +139,23 @@ class DecisionBloc extends BlocBase {
           ),
         ),
       );
+
+  BehaviorSubject<String> _queryDecisionController =
+      new BehaviorSubject<String>.seeded("");
+
+  Stream<String> get queryDecisionStream => _queryDecisionController.stream;
+  ValueChanged<String> get onQueryChange => _queryDecisionController.sink.add;
+  String? get queryDecisionVal => _queryDecisionController.value;
+
+  Future<DecisionState> getDecisionByDecisionNum() async {
+    Decision decision =
+        await _decisionRepo.getDecisionByDecisionNumber(queryDecisionVal!);
+
+    List<Decision> list = [];
+
+    list.add(decision);
+
+    _inDecisions.add(list);
+    return DecisionState.success;
+  }
 }

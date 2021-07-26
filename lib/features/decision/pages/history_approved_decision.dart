@@ -10,19 +10,18 @@ import 'package:leader_app/features/decision/widgets/decision_info_widget.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/resources/strings.dart';
 import 'package:leader_app/themes/app_colors.dart';
-import 'package:leader_app/utils/custom_snackbar/custom_snack_bar.dart';
-import 'package:leader_app/utils/custom_snackbar/top_snack_bar.dart';
 import 'package:leader_app/utils/utils.dart';
 import 'package:leader_app/widgets/common/app_loading.dart';
-import 'package:leader_app/widgets/search_input_widget.dart';
 import 'package:leader_app/widgets/title_appbar_widget.dart';
 
-class ListDecisionPage extends StatefulWidget {
+class HistoryApprovedDecisionPage extends StatefulWidget {
   @override
-  _ListDecisionPageState createState() => _ListDecisionPageState();
+  _HistoryApprovedDecisionPageState createState() =>
+      _HistoryApprovedDecisionPageState();
 }
 
-class _ListDecisionPageState extends DecisionStateHelper<ListDecisionPage>
+class _HistoryApprovedDecisionPageState
+    extends DecisionStateHelper<HistoryApprovedDecisionPage>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
   final ScrollController _scrollController = ScrollController();
@@ -42,15 +41,13 @@ class _ListDecisionPageState extends DecisionStateHelper<ListDecisionPage>
         tabController.animateTo(5);
       }
     });
-    fetchListDecision02();
+    getHistoryApprovedDecision();
   }
 
   @override
   void didChangeDependencies() {
     _scrollController
       ..addListener(() {
-        // print(_scrollController.position.pixels);
-        // print(_scrollController.position.maxScrollExtent);
         if (_scrollController.position.pixels + 30 >=
             _scrollController.position.maxScrollExtent) {
           if (_isLoadMore) {
@@ -58,20 +55,20 @@ class _ListDecisionPageState extends DecisionStateHelper<ListDecisionPage>
           }
           _isLoadMore = true;
           decisionBloc
-              .loadMoreDecision()
+              .loadMoreHistDecision()
               .whenComplete(() => _isLoadMore = false);
         }
       });
     super.didChangeDependencies();
   }
 
-  void fetchListDecision02() async {
+  void getHistoryApprovedDecision() async {
     Utils.setLoadingStyleAppSystemUI();
     setState(() {
       isLoading = true;
     });
     try {
-      var res = await decisionBloc.getListDecision(1, 7);
+      var res = await decisionBloc.getHistoryApprovedDecision(1, 7);
       handleDecisionState(res);
     } on DioError catch (e) {
       setState(() {
@@ -79,50 +76,6 @@ class _ListDecisionPageState extends DecisionStateHelper<ListDecisionPage>
       });
       showErrorMessage(
         e.message,
-      );
-    }
-  }
-
-  void handleApprovedDecision(int id) async {
-    Utils.setLoadingStyleAppSystemUI();
-    setState(() {
-      isLoading = true;
-    });
-    try {
-      var res = await decisionBloc.approvedDecision(id);
-      handleDecisionState(res);
-    } on DioError catch (e) {
-      setState(() {
-        isLoading = false;
-      });
-      showErrorMessage(
-        e.message,
-      );
-    }
-  }
-
-  void findDecisionByDecisionNum() async {
-    Utils.setLoadingStyleAppSystemUI();
-    setState(() {
-      isLoading = true;
-    });
-    try {
-      var res = await decisionBloc.getDecisionByDecisionNum();
-      handleDecisionState(res);
-    } on DioError catch (e) {
-      setState(() {
-        isLoading = false;
-      });
-
-      //TODO: enable to show error
-      // showErrorMessage(
-      //   e.message,
-      // );
-      showTopSnackBar(
-        context,
-        CustomSnackBar.info(
-          message: "không tìm thấy số quyết định",
-        ),
       );
     }
   }
@@ -157,7 +110,7 @@ class _ListDecisionPageState extends DecisionStateHelper<ListDecisionPage>
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 28),
                   child: Text(
-                    Strings.approve_decision,
+                    Strings.history_approve_decision,
                     style: Theme.of(context)
                         .textTheme
                         .headline2!
@@ -167,14 +120,7 @@ class _ListDecisionPageState extends DecisionStateHelper<ListDecisionPage>
                 Gaps.vGap16,
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 28),
-                  child: StreamBuilder<String>(
-                      stream: decisionBloc.queryDecisionStream,
-                      builder: (context, snapshot) {
-                        return SearchInputWidget(
-                          onChanged: decisionBloc.onQueryChange,
-                          doSearch: findDecisionByDecisionNum,
-                        );
-                      }),
+                  // child: SearchInputWidget(),
                 ),
                 Gaps.vGap16,
                 Container(
@@ -243,10 +189,6 @@ class _ListDecisionPageState extends DecisionStateHelper<ListDecisionPage>
                                         itemBuilder: (context, index) {
                                           return DecisionInfoWidget(
                                             decision: decisions[index],
-                                            onPressed: () =>
-                                                handleApprovedDecision(
-                                              decisions[index].decisionId,
-                                            ),
                                           );
                                         },
                                         controller: _scrollController,

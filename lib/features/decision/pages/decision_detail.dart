@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:leader_app/blocs/bloc_provider.dart';
+import 'package:leader_app/features/decision/blocs/decision_bloc.dart';
 import 'package:leader_app/features/decision/blocs/decision_detail_bloc.dart';
 import 'package:leader_app/features/decision/helper/decision_state_helper.dart';
 import 'package:leader_app/features/decision/models/detail_decision_response.dart';
@@ -32,6 +33,7 @@ class DecisionDetailPage extends StatefulWidget {
 class _DecisionDetailState extends DecisionStateHelper<DecisionDetailPage>
     with SingleTickerProviderStateMixin {
   final decisionDetailBloc = DecisionDetailBloc();
+
   @override
   void initState() {
     super.initState();
@@ -79,8 +81,9 @@ class _DecisionDetailState extends DecisionStateHelper<DecisionDetailPage>
         context,
         CustomSnackBar.success(message: "Phê duyệt quyết định thành công"),
       );
-      Future.delayed(Duration(milliseconds: 4000))
-          .whenComplete(() => Navigator.of(context).pop());
+      Future.delayed(Duration(milliseconds: 4000)).whenComplete(
+        () => Navigator.of(context).pop(),
+      );
     } on DioError catch (e) {
       setState(() {
         isLoading = false;
@@ -94,6 +97,8 @@ class _DecisionDetailState extends DecisionStateHelper<DecisionDetailPage>
 
   @override
   Widget build(BuildContext context) {
+    final decisionBloc = BlocProvider.of<DecisionBloc>(context);
+
     return BlocProvider(
       bloc: decisionDetailBloc,
       child: AppLoading(
@@ -212,9 +217,11 @@ class _DecisionDetailState extends DecisionStateHelper<DecisionDetailPage>
                                 child: ButtonText(
                                   title: "Phê duyệt",
                                   borderColor: Colors.white,
-                                  onPressed: () => handleApprovedDecisionById(
-                                    int.parse(decision.decisionId),
-                                  ),
+                                  onPressed: () {
+                                    handleApprovedDecisionById(
+                                      int.parse(decision.decisionId),
+                                    );
+                                  },
                                   textStyle: Theme.of(context)
                                       .textTheme
                                       .headline3!

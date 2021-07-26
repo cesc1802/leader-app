@@ -3,7 +3,6 @@ import 'package:leader_app/features/auth/pages/login_page.dart';
 import 'package:leader_app/features/auth/widgets/slider_intro.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/resources/strings.dart';
-import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/widgets/button_text.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -42,11 +41,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       },
                     ),
                     Gaps.vGap16,
-                    ButtonText(
-                      title: Strings.registerButton,
-                      backgroundColor: Colors.white,
-                      borderColor: AppColors.primaryColor,
-                    ),
+                    // ButtonText(
+                    //   title: Strings.registerButton,
+                    //   backgroundColor: Colors.white,
+                    //   borderColor: AppColors.primaryColor,
+                    // ),
                   ],
                 ),
               ),

@@ -15,6 +15,10 @@ class Validators {
     return pwd!.length >= 6;
   }
 
+  static bool isValidUsername(String? username) {
+    return username!.length >= 6;
+  }
+
   final validateNormalText = (String field) =>
       StreamTransformer<String, String>.fromHandlers(handleData: (email, sink) {
         sink.add(email);

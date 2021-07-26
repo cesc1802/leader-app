@@ -22,7 +22,7 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends LoginStateHelper<AuthScreen> {
   final loginBloc = LoginBloc();
-
+  bool _isObscure = true;
   @override
   bool isLoading = false;
 
@@ -91,9 +91,12 @@ class _AuthScreenState extends LoginStateHelper<AuthScreen> {
                     builder: (context, snapshot) {
                       return CustomTextField(
                         labelText: Strings.login_password_label,
-                        obscureText: true,
+                        obscureText: _isObscure,
                         prefixIcon: Image.asset(UIData.lockIcon),
-                        suffixIcon: Image.asset(UIData.showIcon),
+                        suffixIcon: InkWell(
+                          onTap: _showPassWord,
+                          child: Image.asset(UIData.showIcon),
+                        ),
                         onChanged: loginBloc.onPasswordChanged,
                       );
                     }),
@@ -142,30 +145,30 @@ class _AuthScreenState extends LoginStateHelper<AuthScreen> {
                   textAlign: TextAlign.center,
                 ),
                 Gaps.vGap24,
-                RichText(
-                  text: TextSpan(
-                    text: Strings.login_no_account,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline1!
-                        .copyWith(fontSize: 12, color: AppColors.primaryColor),
-                    children: [
-                      TextSpan(
-                        text: Strings.login_register,
-                        style: Theme.of(context).textTheme.headline1!.copyWith(
-                              fontSize: 12,
-                              color: AppColors.primaryColor,
-                              decoration: TextDecoration.underline,
-                            ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            print(Strings.login_register);
-                          },
-                      ),
-                    ],
-                  ),
-                  textAlign: TextAlign.center,
-                ),
+                // RichText(
+                //   text: TextSpan(
+                //     text: Strings.login_no_account,
+                //     style: Theme.of(context)
+                //         .textTheme
+                //         .headline1!
+                //         .copyWith(fontSize: 12, color: AppColors.primaryColor),
+                //     children: [
+                //       TextSpan(
+                //         text: Strings.login_register,
+                //         style: Theme.of(context).textTheme.headline1!.copyWith(
+                //               fontSize: 12,
+                //               color: AppColors.primaryColor,
+                //               decoration: TextDecoration.underline,
+                //             ),
+                //         recognizer: TapGestureRecognizer()
+                //           ..onTap = () {
+                //             print(Strings.login_register);
+                //           },
+                //       ),
+                //     ],
+                //   ),
+                //   textAlign: TextAlign.center,
+                // ),
               ],
             ),
           ),
@@ -193,5 +196,15 @@ class _AuthScreenState extends LoginStateHelper<AuthScreen> {
         ' Xin vui lòng thử lại',
       );
     }
+  }
+
+  void _showPassWord() {
+    setState(() {
+      _isObscure = !_isObscure;
+      Future.delayed(Duration(milliseconds: 1500))
+          .whenComplete(() => setState(() {
+                _isObscure = true;
+              }));
+    });
   }
 }

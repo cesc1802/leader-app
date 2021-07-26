@@ -20,6 +20,7 @@ class UIData {
   static const String searchAdvancedIcon = "$imageDir/search-advanced-icon.png";
   static const String selectedIcon = "$imageDir/selected-icon.png";
   static const String decisionDetailIcon = "$imageDir/decision-detail-icon.png";
+  static const String historyApproved = "$imageDir/history-approved.png";
 
   static const String userAvatar = "$imageDir/user-avatar.png";
 

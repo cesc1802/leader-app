@@ -6,6 +6,8 @@ import 'package:leader_app/utils/validators.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoginBloc extends BlocBase with Validators {
+  bool obscureText = true;
+
   final _userNameCtrl = BehaviorSubject<String>.seeded("");
   Stream<String> get userNameStream => _userNameCtrl.stream;
   ValueChanged<String> get onUserNameChanged => _userNameCtrl.sink.add;
@@ -17,14 +19,27 @@ class LoginBloc extends BlocBase with Validators {
   ValueChanged<String> get onPasswordChanged => _pwdCtrl.sink.add;
   String? get pwdValue => _pwdCtrl.value;
 
+  /// Show PasswordCtrl
+  final _showPasswordCtrl = BehaviorSubject<bool>.seeded(false);
+  Stream<String> get showPasswordStream => _pwdCtrl.stream;
+  ValueChanged<String> get onShowPasswordChange => _pwdCtrl.sink.add;
+  bool? get showPasswordValue => _showPasswordCtrl.value;
+
   /// Valid Login
   Stream<bool> get validLogin =>
       Rx.combineLatest2(userNameStream, pwdStream, (username, password) {
-        if (Validators.isValidPassword(password as String)) {
+        if (Validators.isValidPassword(password as String) &&
+            Validators.isValidUsername(username as String)) {
           return true;
         }
         return false;
       });
+
+  // Stream<bool> get isShowPassword => pwdStream.map((event) => event.length > 0);
+
+  bool get showPassword {
+    return !obscureText;
+  }
 
   final _auth = AppAuthService();
 
