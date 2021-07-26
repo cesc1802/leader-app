@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:leader_app/api/api.dart';
+import 'package:leader_app/features/decision/models/detail_decision_response.dart';
 import 'package:leader_app/features/decision/models/list_decision_response.dart';
 import 'package:leader_app/features/decision/models/update_decision_response.dart';
 import 'package:leader_app/providers/api_provider.dart';
@@ -30,6 +31,15 @@ class DecisionApiProvider {
     try {
       Response response = await this._apiProvider.put(Api.UPDATE_QD02 + "/$id");
       return UpdateDecisionResponse.fromJSON(response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<DetailDecisionResponse> getById(String id) async {
+    try {
+      Response response = await this._apiProvider.get(Api.GET_QD02 + "/$id");
+      return DetailDecisionResponse.fromJson(response.data['data']);
     } catch (e) {
       rethrow;
     }

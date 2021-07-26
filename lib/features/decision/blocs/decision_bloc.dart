@@ -59,7 +59,6 @@ class DecisionBloc extends BlocBase {
     _decisions.addAll(list.decisions.toSet());
 
     totalRecord += list.decisions.length;
-    currentPage++;
 
     return DecisionState.success;
   }
@@ -80,6 +79,7 @@ class DecisionBloc extends BlocBase {
 
   @override
   void dispose() {
+    _decisionsController.close();
     _listDecisionController.close();
     _updDecisionCtrl.close();
   }
@@ -92,7 +92,7 @@ class DecisionBloc extends BlocBase {
         (_) => TimerStream(
           true,
           Duration(
-            seconds: 1,
+            microseconds: 500,
           ),
         ),
       );

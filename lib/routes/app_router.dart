@@ -27,7 +27,15 @@ class AppRouter {
       case RouteNames.decisionListV2:
         return buildRoute(settings, ListDecisionPageV2());
       case RouteNames.decisionDetail:
-        return buildRoute(settings, DecisionDetail());
+        if (settings.arguments is String) {
+          final String id = settings.arguments as String;
+          return buildRoute(
+              settings,
+              DecisionDetailPage(
+                decisionNumber: id,
+              ));
+        }
+        return buildRoute(settings, ErrorPage(routeName: settings.name));
       case RouteNames.navBottom:
         return buildRoute(settings, NavBottom());
       default:
@@ -69,7 +77,16 @@ class AppRouter {
       case RouteNames.decisionListV2:
         return buildRoute(settings, ListDecisionPageV2());
       case RouteNames.decisionDetail:
-        return buildRoute(settings, DecisionDetail());
+        if (settings.arguments is String) {
+          final String id = settings.arguments as String;
+          print(id);
+          return buildRoute(
+              settings,
+              DecisionDetailPage(
+                decisionNumber: id,
+              ));
+        }
+        return buildRoute(settings, ErrorPage(routeName: settings.name));
       case RouteNames.navBottom:
         return buildRoute(settings, NavBottom());
       default:

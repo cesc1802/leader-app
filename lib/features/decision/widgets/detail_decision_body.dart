@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:leader_app/features/decision/models/detail_decision_response.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/utils/color_utils.dart';
@@ -6,8 +8,12 @@ import 'package:leader_app/utils/ui_data.dart';
 import 'package:leader_app/widgets/button_text.dart';
 
 class DetailDecisionBody extends StatelessWidget {
-  const DetailDecisionBody({Key? key}) : super(key: key);
+  const DetailDecisionBody({
+    Key? key,
+    required this.decision,
+  }) : super(key: key);
 
+  final DetailDecisionResponse decision;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,18 +27,16 @@ class DetailDecisionBody extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(Dimens.gap_dp16),
         child: Container(
-          // color: ColorUtils.convertFromHexColor(hexColor: "E6EAF7"),
-          // color: AppColors.decisionDetailBodyColor,
           child: Column(
             children: [
               DetailDecisionBodyRow(
                 leftText: "Ngày lập biên bản",
-                rightText: "30/04/2021",
+                rightText: decision.decisionDate,
               ),
               Gaps.vGap12,
               DetailDecisionBodyRow(
                 leftText: "Người vi phạm",
-                rightText: "Ngô Minh Phúc",
+                rightText: decision.violatorName,
               ),
               Gaps.vGap12,
               DetailDecisionBodyRow(
@@ -42,23 +46,29 @@ class DetailDecisionBody extends StatelessWidget {
               Gaps.vGap12,
               DetailDecisionBodyRow(
                 leftText: "Nơi ở hiện tại",
-                rightText: "Đồng Quang, Quốc Oai,\nHà Nội",
+                rightText: decision.violatorAddress,
               ),
               Gaps.vGap12,
               DetailDecisionBodyRow(
                 leftText: "Hình thức xử phạt",
-                rightText: "Phạt tiền",
+                rightText: decision.additional,
               ),
               Gaps.vGap12,
               DetailDecisionBodyRow(
                 leftText: "Hành vi vi phạm",
-                rightText:
-                    "Không chấp hành\nhiệu lệnh chỉ dẫn\ncủa vạch kẻ đường",
+                rightText: decision.violationBehavior
+                    .replaceAll(RegExp("; "), ";\n")
+                    .trim(),
               ),
               Gaps.vGap12,
               DetailDecisionBodyRow(
-                leftText: "Só tiện nộp phạt",
-                rightText: "150.000 đ",
+                leftText: "Số tiện nộp phạt",
+                rightText: NumberFormat.currency(
+                  locale: 'vi',
+                  symbol: "Đ",
+                ).format(
+                  decision.totalAmount,
+                ), //decision.totalAmount.toString(),
               ),
               Gaps.vGap12,
               Divider(),
@@ -111,23 +121,36 @@ class DetailDecisionBodyRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
-        Text(
-          leftText,
-          style: Theme.of(context).textTheme.headline3!.copyWith(
-                fontSize: 12,
-                color: AppColors.decisionDetailLabelTextColor,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Text(
+                leftText,
+                style: Theme.of(context).textTheme.headline3!.copyWith(
+                      fontSize: 12,
+                      color: AppColors.decisionDetailLabelTextColor,
+                    ),
               ),
+            ),
+          ],
         ),
-        Text(
-          rightText,
-          style: Theme.of(context).textTheme.headline2!.copyWith(
-                fontSize: 15,
-                color: AppColors.decisionDetailTextColor,
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                rightText,
+                textAlign: TextAlign.justify,
+                style: Theme.of(context).textTheme.headline2!.copyWith(
+                      fontSize: 14,
+                      color: AppColors.decisionDetailTextColor,
+                    ),
               ),
-        ),
+            ),
+          ],
+        )
       ],
     );
   }

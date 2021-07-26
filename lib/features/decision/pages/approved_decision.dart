@@ -74,7 +74,11 @@ class ApprovedDecision extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DecisionDetail(),
+                            settings: RouteSettings(
+                                name: "DecisionDetailPage", arguments: "1"),
+                            builder: (context) => DecisionDetailPage(
+                              decisionNumber: "1",
+                            ),
                           ),
                         );
                       },

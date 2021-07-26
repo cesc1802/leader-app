@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 const Locale('vi'),
               ],
               locale: const Locale('vi'),
-              initialRoute: RouteNames.root,
+              initialRoute: RouteNames.welcome,
               onGenerateRoute: AppRouter.generateRoute,
             );
           }

@@ -1,3 +1,4 @@
+import 'package:leader_app/features/decision/models/detail_decision_response.dart';
 import 'package:leader_app/features/decision/models/list_decision_response.dart';
 import 'package:leader_app/features/decision/models/update_decision_response.dart';
 import 'package:leader_app/features/decision/provider/decision_provider.dart';
@@ -14,5 +15,9 @@ class DecisionRepository {
       id,
       {},
     );
+  }
+
+  Future<DetailDecisionResponse> getDecisionById(String id) async {
+    return _apiProvider.getById(id);
   }
 }

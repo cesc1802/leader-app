@@ -6,10 +6,10 @@ class SearchInputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: Theme.of(context)
-          .textTheme
-          .headline2!
-          .copyWith(color: AppColors.primaryColor, fontSize: 12),
+      style: Theme.of(context).textTheme.headline2!.copyWith(
+            color: AppColors.primaryColor,
+            fontSize: 12,
+          ),
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
@@ -30,8 +30,20 @@ class SearchInputWidget extends StatelessWidget {
             .textTheme
             .headline2!
             .copyWith(color: AppColors.disableColor, fontSize: 12),
-        prefixIcon: Icon(
-          Icons.search,
+        // prefixIcon: Icon(
+        //   Icons.search,
+        // ),
+        suffixIcon: InkWell(
+          onTap: () {
+            print("handle search");
+          },
+          child: Icon(
+            Icons.search,
+          ),
+        ),
+        suffixIconConstraints: BoxConstraints(
+          minHeight: 32,
+          minWidth: 36,
         ),
         prefixIconConstraints: BoxConstraints(
           minHeight: 32,
