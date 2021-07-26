@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:leader_app/blocs/app_event_bloc.dart';
 import 'package:leader_app/blocs/bloc_provider.dart';
 import 'package:leader_app/features/decision/helper/decision_state_helper.dart';
 import 'package:leader_app/features/decision/models/decision.dart';
@@ -16,9 +19,19 @@ class DecisionBloc extends BlocBase {
   var totalRecordHist = 0;
   var currentPageHist = 1;
 
+  late StreamSubscription<BlocEvent> _approveDecisionSubscription;
+
   DecisionBloc() {
     _decisionRemoveController.listen(_handleRemoveDecision);
     _histDecisionRemoveController.listen(_handleRemoveHistDecision);
+    _approveDecisionSubscription = AppEventBloc().listenEvent(
+      EventName.approveDecision,
+      _approveDecisionHandler,
+    );
+  }
+
+  void _approveDecisionHandler(BlocEvent evt) {
+    print('success approve decision with id : ${evt.value}');
   }
 
   void _handleRemoveDecision(Decision decision) {
@@ -109,6 +122,8 @@ class DecisionBloc extends BlocBase {
   Future<DecisionState> approvedDecision(int id) async {
     UpdateDecisionResponse result = await _decisionRepo.approvedDecision(id);
     _updDecisionCtrl.add(result);
+    // --> raise event approve decision
+    AppEventBloc().emitEvent(BlocEvent(EventName.approveDecision, id));
     return DecisionState.success;
   }
 
@@ -125,6 +140,7 @@ class DecisionBloc extends BlocBase {
     _decisionsController.close();
     _listDecisionController.close();
     _updDecisionCtrl.close();
+    _approveDecisionSubscription.cancel();
   }
 
   BehaviorSubject<List<Decision>> _decisionsController =
