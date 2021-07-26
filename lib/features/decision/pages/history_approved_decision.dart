@@ -6,7 +6,7 @@ import 'package:leader_app/features/decision/blocs/decision_bloc.dart';
 import 'package:leader_app/features/decision/helper/decision_state_helper.dart';
 import 'package:leader_app/features/decision/models/decision.dart';
 import 'package:leader_app/features/decision/widgets/advance_action_widget.dart';
-import 'package:leader_app/features/decision/widgets/decision_info_widget.dart';
+import 'package:leader_app/features/decision/widgets/hist_decision_info_widget.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/resources/strings.dart';
 import 'package:leader_app/themes/app_colors.dart';
@@ -187,7 +187,7 @@ class _HistoryApprovedDecisionPageState
                                     return Container(
                                       child: ListView.separated(
                                         itemBuilder: (context, index) {
-                                          return DecisionInfoWidget(
+                                          return HistDecisionInfo(
                                             decision: decisions[index],
                                           );
                                         },
