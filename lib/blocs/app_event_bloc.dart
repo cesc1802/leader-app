@@ -5,6 +5,7 @@ import 'package:rxdart/rxdart.dart';
 
 enum EventName {
   approveDecision,
+  listDecision,
 }
 
 class BlocEvent {

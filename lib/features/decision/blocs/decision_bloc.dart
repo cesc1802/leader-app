@@ -20,18 +20,27 @@ class DecisionBloc extends BlocBase {
   var currentPageHist = 1;
 
   late StreamSubscription<BlocEvent> _approveDecisionSubscription;
+  late StreamSubscription<BlocEvent> _listDecisionSubscription;
 
   DecisionBloc() {
     _decisionRemoveController.listen(_handleRemoveDecision);
     _histDecisionRemoveController.listen(_handleRemoveHistDecision);
+
+    _queryDecisionController.listen((value) {});
     _approveDecisionSubscription = AppEventBloc().listenEvent(
       EventName.approveDecision,
       _approveDecisionHandler,
     );
+
+    _approveDecisionSubscription = AppEventBloc().listenEvent(
+      EventName.listDecision,
+      _approveDecisionHandler,
+    );
   }
 
-  void _approveDecisionHandler(BlocEvent evt) {
+  void _approveDecisionHandler(BlocEvent evt) async {
     print('success approve decision with id : ${evt.value}');
+    await getListDecision(1, 7);
   }
 
   void _handleRemoveDecision(Decision decision) {
@@ -160,7 +169,19 @@ class DecisionBloc extends BlocBase {
       new BehaviorSubject<String>.seeded("");
 
   Stream<String> get queryDecisionStream => _queryDecisionController.stream;
-  ValueChanged<String> get onQueryChange => _queryDecisionController.sink.add;
+  ValueChanged<String> get onQueryChange {
+    if (queryDecisionVal == "") {
+      print("emit list event");
+      AppEventBloc().emitEvent(
+        BlocEvent(
+          EventName.listDecision,
+          queryDecisionVal,
+        ),
+      );
+    }
+    return _queryDecisionController.sink.add;
+  }
+
   String? get queryDecisionVal => _queryDecisionController.value;
 
   Future<DecisionState> getDecisionByDecisionNum() async {

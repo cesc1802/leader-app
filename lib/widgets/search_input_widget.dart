@@ -15,6 +15,7 @@ class SearchInputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textInputAction: TextInputAction.go,
       onChanged: onChanged,
       style: Theme.of(context).textTheme.headline2!.copyWith(
             color: AppColors.primaryColor,

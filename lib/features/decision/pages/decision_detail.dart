@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:leader_app/blocs/bloc_provider.dart';
-import 'package:leader_app/features/decision/blocs/decision_bloc.dart';
 import 'package:leader_app/features/decision/blocs/decision_detail_bloc.dart';
 import 'package:leader_app/features/decision/helper/decision_state_helper.dart';
 import 'package:leader_app/features/decision/models/detail_decision_response.dart';
@@ -97,8 +96,6 @@ class _DecisionDetailState extends DecisionStateHelper<DecisionDetailPage>
 
   @override
   Widget build(BuildContext context) {
-    final decisionBloc = BlocProvider.of<DecisionBloc>(context);
-
     return BlocProvider(
       bloc: decisionDetailBloc,
       child: AppLoading(

@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:leader_app/blocs/app_event_bloc.dart';
 import 'package:leader_app/blocs/bloc_provider.dart';
 import 'package:leader_app/features/decision/helper/decision_state_helper.dart';
 import 'package:leader_app/features/decision/models/detail_decision_response.dart';
@@ -38,9 +41,15 @@ class DecisionDetailBloc extends BlocBase {
     UpdateDecisionResponse isOk = await _decisionRepo.approvedDecision(id);
 
     _decisionUpdateSink.add(isOk);
+
+    //TODO: raise event to app level
+    AppEventBloc().emitEvent(BlocEvent(EventName.approveDecision, id));
+
     //TODO: emit to stream
     return DecisionState.success;
   }
+
+  DecisionDetailBloc() {}
 
   @override
   void dispose() {
