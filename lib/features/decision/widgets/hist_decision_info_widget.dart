@@ -69,7 +69,7 @@ class HistDecisionInfo extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Người vi phạm ' + decision.violatorName,
+                          'Ngày phê duyệt ' + decision.approvedDate,
                           style: Theme.of(context)
                               .textTheme
                               .headline3!
@@ -78,13 +78,12 @@ class HistDecisionInfo extends StatelessWidget {
                                   color: AppColors.decisionItemSubTitleColor),
                         ),
                         Text(
-                          "Còn " + decision.remainTime,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline3!
-                              .copyWith(
-                                  fontSize: 8,
-                                  color: AppColors.decisionItemSubTitleColor),
+                          "Đã phê duyệt",
+                          style:
+                              Theme.of(context).textTheme.headline3!.copyWith(
+                                    fontSize: 8,
+                                    color: Colors.green,
+                                  ),
                         )
                       ],
                     ),

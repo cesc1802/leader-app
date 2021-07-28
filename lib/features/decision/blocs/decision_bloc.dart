@@ -26,20 +26,26 @@ class DecisionBloc extends BlocBase {
     _decisionRemoveController.listen(_handleRemoveDecision);
     _histDecisionRemoveController.listen(_handleRemoveHistDecision);
 
-    _queryDecisionController.listen((value) {});
     _approveDecisionSubscription = AppEventBloc().listenEvent(
       EventName.approveDecision,
       _approveDecisionHandler,
     );
 
-    _approveDecisionSubscription = AppEventBloc().listenEvent(
+    _listDecisionSubscription = AppEventBloc().listenEvent(
       EventName.listDecision,
-      _approveDecisionHandler,
+      _listDecisionHandler,
     );
   }
 
   void _approveDecisionHandler(BlocEvent evt) async {
-    print('success approve decision with id : ${evt.value}');
+    print(
+        '_approveDecisionHandler success approve decision with id : ${evt.value}');
+    await getListDecision(1, 7);
+  }
+
+  void _listDecisionHandler(BlocEvent evt) async {
+    print(
+        '_listDecisionHandler success approve decision with id : ${evt.value}');
     await getListDecision(1, 7);
   }
 
@@ -132,6 +138,8 @@ class DecisionBloc extends BlocBase {
     UpdateDecisionResponse result = await _decisionRepo.approvedDecision(id);
     _updDecisionCtrl.add(result);
     // --> raise event approve decision
+
+    print("approvedDecision first time init");
     AppEventBloc().emitEvent(BlocEvent(EventName.approveDecision, id));
     return DecisionState.success;
   }
@@ -150,6 +158,7 @@ class DecisionBloc extends BlocBase {
     _listDecisionController.close();
     _updDecisionCtrl.close();
     _approveDecisionSubscription.cancel();
+    _listDecisionSubscription.cancel();
   }
 
   BehaviorSubject<List<Decision>> _decisionsController =
@@ -165,10 +174,10 @@ class DecisionBloc extends BlocBase {
         ),
       );
 
-  BehaviorSubject<String> _queryDecisionController =
-      new BehaviorSubject<String>.seeded("");
+  BehaviorSubject<String?> _queryDecisionController =
+      new BehaviorSubject<String?>.seeded(null);
 
-  Stream<String> get queryDecisionStream => _queryDecisionController.stream;
+  Stream<String?> get queryDecisionStream => _queryDecisionController.stream;
   ValueChanged<String> get onQueryChange {
     if (queryDecisionVal == "") {
       print("emit list event");

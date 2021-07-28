@@ -184,18 +184,35 @@ class _HistoryApprovedDecisionPageState
                                     final List<Decision> decisions =
                                         snapshot.data!;
                                     // final Paging paging = snapshot.data!.paging;
+
                                     return Container(
-                                      child: ListView.separated(
-                                        itemBuilder: (context, index) {
-                                          return HistDecisionInfo(
-                                            decision: decisions[index],
-                                          );
-                                        },
-                                        controller: _scrollController,
-                                        itemCount: decisions.length,
-                                        separatorBuilder: (context, index) =>
-                                            Gaps.vGap16,
-                                      ),
+                                      child: decisions.length == 0
+                                          ? Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 10,
+                                                vertical: 80,
+                                              ),
+                                              child: Text(
+                                                "Không có quyết định nào đã được phê duyệt",
+                                                textAlign: TextAlign.center,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline1,
+                                              ),
+                                            )
+                                          : ListView.separated(
+                                              itemBuilder: (context, index) {
+                                                return HistDecisionInfo(
+                                                  decision: decisions[index],
+                                                );
+                                              },
+                                              controller: _scrollController,
+                                              itemCount: decisions.length,
+                                              separatorBuilder:
+                                                  (context, index) =>
+                                                      Gaps.vGap16,
+                                            ),
                                     );
                                   }),
                               Container(

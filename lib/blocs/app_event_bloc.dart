@@ -35,6 +35,10 @@ class AppEventBloc extends BlocBase {
   StreamSubscription<BlocEvent> listenEvent(
       EventName eventName, Function(BlocEvent) handler) {
     return _publishSubject.stream
+        .map((event) {
+          print(event);
+          return event;
+        })
         .where((e) => e._eventName == eventName)
         .listen(handler);
   }
@@ -42,6 +46,10 @@ class AppEventBloc extends BlocBase {
   StreamSubscription<BlocEvent> listenLastEvent(
       EventName eventName, Function(BlocEvent) handler) {
     return _behaviorSubject.stream
+        .map((event) {
+          print(event);
+          return event;
+        })
         .where((e) => e._eventName == eventName)
         .listen(handler);
   }

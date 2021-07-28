@@ -50,7 +50,7 @@ class _AdvanceActionWidgetState extends State<AdvanceActionWidget> {
             ],
           ),
           GestureDetector(
-            onTap: onClickAdvanceFilter,
+            // onTap: onClickAdvanceFilter,
             child: Row(
               children: [
                 Image.asset(UIData.advanceFilterIcon),

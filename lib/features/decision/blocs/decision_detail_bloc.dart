@@ -43,7 +43,9 @@ class DecisionDetailBloc extends BlocBase {
     _decisionUpdateSink.add(isOk);
 
     //TODO: raise event to app level
-    AppEventBloc().emitEvent(BlocEvent(EventName.approveDecision, id));
+    if (isOk.isSuccess) {
+      AppEventBloc().emitEvent(BlocEvent(EventName.approveDecision, id));
+    }
 
     //TODO: emit to stream
     return DecisionState.success;

@@ -80,6 +80,10 @@ class _ListDecisionPageState extends DecisionStateHelper<ListDecisionPage>
       showErrorMessage(
         e.message,
       );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -167,7 +171,7 @@ class _ListDecisionPageState extends DecisionStateHelper<ListDecisionPage>
                 Gaps.vGap16,
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 28),
-                  child: StreamBuilder<String>(
+                  child: StreamBuilder<String?>(
                       stream: decisionBloc.queryDecisionStream,
                       builder: (context, snapshot) {
                         return SearchInputWidget(

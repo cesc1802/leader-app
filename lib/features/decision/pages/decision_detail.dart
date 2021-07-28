@@ -146,7 +146,7 @@ class _DecisionDetailState extends DecisionStateHelper<DecisionDetailPage>
                                             ),
                                       ),
                                       Text(
-                                        decision.decisionNumber,
+                                        decision.reportNumber,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline3!

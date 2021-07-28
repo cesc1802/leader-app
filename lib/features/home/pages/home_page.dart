@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:leader_app/features/home/widgets/category_item_widget.dart';
-import 'package:leader_app/features/home/widgets/header_widget.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/routes/route_name.dart';
 import 'package:leader_app/themes/app_colors.dart';
@@ -8,6 +7,49 @@ import 'package:leader_app/utils/ui_data.dart';
 import 'package:leader_app/widgets/body_wrapper.dart';
 import 'package:leader_app/widgets/notify_item_widget.dart';
 import 'package:leader_app/widgets/section_widget.dart';
+
+class Fake {
+  // title:
+  // "Quyết định số: G33.23.23.001-981-21-000087\nsắp hết hạn phê duyệt ",
+  // time: "10:03:13, 12/9/2020",
+  Fake({
+    required this.title,
+    required this.time,
+  });
+
+  final String title;
+  final String time;
+}
+
+// const kIntroSliderItems = [
+//   SliderItem(
+//     title: 'Thuận tiện tra cứu \nDễ dàng phê duyệt',
+//     imageUrl: UIData.logo_1,
+//   ),
+//   SliderItem(
+//     title: 'Giao diện thân thiện\nvới người dùng',
+//     imageUrl: UIData.logo_1,
+//   ),
+//   SliderItem(
+//     title: 'An toàn và bảo mật\nthông tin',
+//     imageUrl: UIData.logo_1,
+//   ),
+// ];
+var kNotiItem = [
+  Fake(
+    time: "10:03:13, 14/11/2020",
+    title: "Quyết định số: G33.23.23.001-981-21-069096\nsắp hết hạn phê duyệt ",
+  ),
+  Fake(
+    time: "10:03:13, 12/10/2020",
+    title: "Quyết định số: G33.23.23.001-981-21-060906\nsắp hết hạn phê duyệt ",
+  ),
+  Fake(
+    time: "10:03:13, 15/7/2020",
+    title:
+        "Quyết định số: G33.23.23.001-981-21-0060969\nsắp hết hạn phê duyệt ",
+  ),
+];
 
 class HomePage extends StatefulWidget {
   @override
@@ -27,7 +69,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Column(
               children: [
-                HeaderWidget(),
+                // HeaderWidget(),
                 Gaps.vGap12,
                 BodyWrapper(
                   padding: EdgeInsets.symmetric(vertical: 28),
@@ -41,9 +83,8 @@ class _HomePageState extends State<HomePage> {
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             return NotifyItemWidget(
-                              title:
-                                  "Quyết định số: G33.23.23.001-981-21-000087\nsắp hết hạn phê duyệt ",
-                              time: "10:03:13, 12/9/2020",
+                              title: kNotiItem[index].title,
+                              time: kNotiItem[index].time,
                             );
                           },
                           separatorBuilder: (_, __) => Gaps.vGap12,

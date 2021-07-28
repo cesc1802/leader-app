@@ -14,7 +14,7 @@ class AppLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: <Widget>[
+      children: [
         AutoHideKeyboard(child: child),
         if (isLoading)
           Container(

@@ -4,7 +4,6 @@ import 'package:leader_app/features/decision/models/detail_decision_response.dar
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/utils/color_utils.dart';
-import 'package:leader_app/utils/ui_data.dart';
 import 'package:leader_app/widgets/button_text.dart';
 
 class DetailDecisionBody extends StatelessWidget {
@@ -41,7 +40,7 @@ class DetailDecisionBody extends StatelessWidget {
               Gaps.vGap12,
               DetailDecisionBodyRow(
                 leftText: "Ngày sinh",
-                rightText: "06/09/1969",
+                rightText: decision.violatorDob,
               ),
               Gaps.vGap12,
               DetailDecisionBodyRow(
@@ -71,10 +70,20 @@ class DetailDecisionBody extends StatelessWidget {
                 ), //decision.totalAmount.toString(),
               ),
               Gaps.vGap12,
-              Divider(),
-              SeeMoreButton(
-                icon: Image.asset(UIData.downArrowIcon),
+              DetailDecisionBodyRow(
+                leftText: "Hình thức xử phạt bổ sung",
+                rightText: decision.additionalForm,
               ),
+              Gaps.vGap12,
+              DetailDecisionBodyRow(
+                leftText: "Đơn vị thi hành quyết định",
+                rightText: decision.decisionUnitImplement,
+              ),
+              Gaps.vGap12,
+              // Divider(),
+              // SeeMoreButton(
+              //   icon: Image.asset(UIData.downArrowIcon),
+              // ),
             ],
           ),
         ),
