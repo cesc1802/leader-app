@@ -92,11 +92,11 @@ class _NavBottomState extends State<NavBottom> with WidgetsBindingObserver {
         ),
         navBarHeight: kBottomNavHeight,
         padding: NavBarPadding.symmetric(vertical: Dimens.gap_dp16),
-        decoration: NavBarDecoration(
-          border: Border(
-            top: BorderSide(width: 1, color: AppColors.primaryColor),
-          ),
-        ),
+        // decoration: NavBarDecoration(
+        //   border: Border(
+        //     top: BorderSide(width: 1, color: AppColors.primaryColor),
+        //   ),
+        // ),
         onItemSelected: handleTabSelected,
         onWillPop: (context) async {
           return true;
