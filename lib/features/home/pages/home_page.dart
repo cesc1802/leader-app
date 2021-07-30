@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
               [
                 Column(
                   children: [
-                    HeaderWidget(),
+                    // HeaderWidget(),
                     Gaps.vGap12,
                     BodyWrapper(
                       padding: EdgeInsets.symmetric(vertical: 28),

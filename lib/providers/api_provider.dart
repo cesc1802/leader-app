@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:leader_app/flavor_config.dart';
 import 'package:leader_app/resources/error_response.dart';
 import 'package:leader_app/resources/log_provider.dart';
 import 'package:leader_app/resources/token_manager.dart';
@@ -25,8 +26,10 @@ class ApiProvider {
   }
 
   ApiProvider._internal() {
+    print(FlavorConfig.instance.values.baseUrl);
     final baseOptions =
-        BaseOptions(baseUrl: 'http://222.252.17.214:16000/appLanhDao/api/v1');
+        BaseOptions(baseUrl: FlavorConfig.instance.values.baseUrl);
+    // BaseOptions(baseUrl: 'http://222.252.17.214:16000/appLanhDao/api/v1');
     _dio = Dio(baseOptions);
     setupInterceptors();
     (_dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson;
