@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leader_app/features/notification/pages/noticication_page.dart';
 import 'package:leader_app/features/profile/pages/profile_page.dart';
-import 'package:leader_app/resources/app_constants.dart';
-import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/routes/app_router.dart';
 import 'package:leader_app/themes/app_colors.dart';
 import 'package:leader_app/utils/ui_data.dart';
@@ -90,11 +88,15 @@ class _NavBottomState extends State<NavBottom> with WidgetsBindingObserver {
           duration: Duration(milliseconds: 150),
           curve: Curves.ease,
         ),
-        navBarHeight: kBottomNavHeight,
-        padding: NavBarPadding.symmetric(vertical: Dimens.gap_dp16),
+        // navBarHeight: kBottomNavHeight,
+        // padding: NavBarPadding.symmetric(vertical: Dimens.gap_dp16),
         decoration: NavBarDecoration(
-          border: Border(
-            top: BorderSide(width: 1, color: AppColors.primaryColor),
+          // border: Border(
+          //   top: BorderSide(width: 1, color: Colors.white),
+          // ),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(12),
+            topRight: Radius.circular(12),
           ),
         ),
         onItemSelected: handleTabSelected,

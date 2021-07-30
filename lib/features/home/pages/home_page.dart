@@ -62,82 +62,76 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(brightness: Brightness.dark, toolbarHeight: 0),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: ListView(
-          physics: ClampingScrollPhysics(),
-          children: [
-            Column(
-              children: [
-                // HeaderWidget(),
-                Gaps.vGap12,
-                BodyWrapper(
-                  padding: EdgeInsets.symmetric(vertical: 28),
-                  child: Column(
-                    children: [
-                      SectionWidget(
-                        title: "Thông báo",
-                        actionTitle: "Xem thêm",
-                        child: ListView.separated(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return NotifyItemWidget(
-                              title: kNotiItem[index].title,
-                              time: kNotiItem[index].time,
-                            );
-                          },
-                          separatorBuilder: (_, __) => Gaps.vGap12,
-                          itemCount: 3,
-                        ),
-                      ),
-                      Gaps.vGap28,
-                      SectionWidget(
-                        title: "Danh mục",
-                        child: SingleChildScrollView(
-                          padding: const EdgeInsets.symmetric(horizontal: 28),
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              InkWell(
-                                onTap: _gotoDecisionListPage,
-                                child: GestureDetector(
-                                  child: CategoryItemWidget(
-                                    image: UIData.categoryImage3,
-                                    title: "Phê duyệt quyết định",
-                                  ),
-                                ),
-                              ),
-                              Gaps.hGap16,
-                              InkWell(
-                                onTap: _gotoHistoryApprovedDecision,
-                                child: CategoryItemWidget(
-                                  image: UIData.historyApproved,
-                                  title: "Lịch sử phê duyệt",
-                                ),
-                              ),
-                              Gaps.hGap16,
-                              CategoryItemWidget(
-                                image: UIData.categoryImage2,
-                                title: "Tra cứu công dân",
-                              ),
-                              Gaps.hGap16,
-                              CategoryItemWidget(
-                                image: UIData.categoryImage1,
-                                title: "Tra cứu phương tiện",
-                              ),
-                              Gaps.hGap16,
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+      body: Column(
+        children: [
+          // HeaderWidget(),
+          Gaps.vGap12,
+          Expanded(
+            child: BodyWrapper(
+              padding: EdgeInsets.symmetric(vertical: 28),
+              child: ListView(
+                children: [
+                  SectionWidget(
+                    title: "Thông báo",
+                    actionTitle: "Xem thêm",
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return NotifyItemWidget(
+                          title: kNotiItem[index].title,
+                          time: kNotiItem[index].time,
+                        );
+                      },
+                      separatorBuilder: (_, __) => Gaps.vGap12,
+                      itemCount: 3,
+                    ),
                   ),
-                ),
-              ],
+                  Gaps.vGap28,
+                  SectionWidget(
+                    title: "Danh mục",
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 28),
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          InkWell(
+                            onTap: _gotoDecisionListPage,
+                            child: GestureDetector(
+                              child: CategoryItemWidget(
+                                image: UIData.categoryImage3,
+                                title: "Phê duyệt quyết định",
+                              ),
+                            ),
+                          ),
+                          Gaps.hGap16,
+                          InkWell(
+                            onTap: _gotoHistoryApprovedDecision,
+                            child: CategoryItemWidget(
+                              image: UIData.historyApproved,
+                              title: "Lịch sử phê duyệt",
+                            ),
+                          ),
+                          Gaps.hGap16,
+                          CategoryItemWidget(
+                            image: UIData.categoryImage2,
+                            title: "Tra cứu công dân",
+                          ),
+                          Gaps.hGap16,
+                          CategoryItemWidget(
+                            image: UIData.categoryImage1,
+                            title: "Tra cứu phương tiện",
+                          ),
+                          Gaps.hGap16,
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
