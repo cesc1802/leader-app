@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leader_app/features/auth/pages/login_page.dart';
 import 'package:leader_app/features/auth/widgets/slider_intro.dart';
+import 'package:leader_app/flavor_config.dart';
 import 'package:leader_app/resources/dimens.dart';
 import 'package:leader_app/resources/strings.dart';
 import 'package:leader_app/widgets/button_text.dart';
@@ -50,6 +51,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ),
             ),
+            Text(
+              "Version: " + FlavorConfig.instance!.values.appVer,
+              style:
+                  Theme.of(context).textTheme.headline1!.copyWith(fontSize: 12),
+            ),
+            Gaps.vGap24,
           ],
         ),
       ),

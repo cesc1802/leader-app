@@ -26,10 +26,8 @@ class ApiProvider {
   }
 
   ApiProvider._internal() {
-    print(FlavorConfig.instance.values.baseUrl);
     final baseOptions =
-        BaseOptions(baseUrl: FlavorConfig.instance.values.baseUrl);
-    // BaseOptions(baseUrl: 'http://222.252.17.214:16000/appLanhDao/api/v1');
+        BaseOptions(baseUrl: FlavorConfig.instance!.values.baseUrl);
     _dio = Dio(baseOptions);
     setupInterceptors();
     (_dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson;

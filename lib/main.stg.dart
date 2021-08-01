@@ -12,8 +12,10 @@ import 'package:leader_app/utils/utils.dart';
 void initApp() {
   FlavorConfig(
     flavor: Flavor.STG,
-    values:
-        FlavorValues(baseUrl: "http://222.252.17.214:16000/appLanhDao/api/v1"),
+    values: FlavorValues(
+      baseUrl: "http://222.252.17.214:7000/appLanhDao/api/v1",
+      appVer: "0.0.1",
+    ),
   );
 }
 
