@@ -1,5 +1,6 @@
 import 'package:leader_app/utils/string_utils.dart';
 
+// review giúp em cái flavor như này xem có ổn không ạ. Ok rồi bác
 enum Flavor {
   DEV,
   QA,

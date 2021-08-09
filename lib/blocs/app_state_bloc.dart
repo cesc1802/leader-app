@@ -54,4 +54,30 @@ class AppStateBloc implements BlocBase {
   void dispose() {
     _appState.close();
   }
+
+  @override
+  // TODO: implement errorMessageSink
+  Sink<String> get errorMessageSink => throw UnimplementedError();
+
+  @override
+  // TODO: implement errorMessageStream
+  Stream<String> get errorMessageStream => throw UnimplementedError();
+
+  @override
+  void handleError(String blocName, Object? object, stacktrace) {
+    // TODO: implement handleError
+  }
+
+  @override
+  // TODO: implement isLoadingSink
+  Sink<bool> get isLoadingSink => throw UnimplementedError();
+
+  @override
+  // TODO: implement isLoadingStream
+  Stream<bool> get isLoadingStream => throw UnimplementedError();
+
+  @override
+  void showMessage() {
+    // TODO: implement showMessage
+  }
 }

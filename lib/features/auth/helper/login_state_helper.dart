@@ -12,8 +12,7 @@ abstract class LoginStateHelper<T extends StatefulWidget> extends State<T>
     with DialogMixin {
   late bool isLoading;
 
-  void handleLoginState(LoginState loginState,
-      {bool isVerifiedPhone = false}) async {
+  void handleLoginState(LoginState loginState) async {
     final appStateBloc = BlocProvider.of<AppStateBloc>(context);
 
     switch (loginState) {

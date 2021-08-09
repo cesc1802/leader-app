@@ -4,6 +4,7 @@ import 'package:leader_app/features/decision/models/decision.dart';
 import 'package:leader_app/features/decision/models/detail_decision_response.dart';
 import 'package:leader_app/features/decision/models/list_decision_response.dart';
 import 'package:leader_app/features/decision/models/update_decision_response.dart';
+import 'package:leader_app/features/decision/provider/app_error.dart';
 import 'package:leader_app/providers/api_provider.dart';
 
 class DecisionApiProvider {
@@ -71,6 +72,39 @@ class DecisionApiProvider {
       return Decision.fromJSON(response.data['data']);
     } catch (e) {
       rethrow;
+    }
+  }
+
+  void handleError(Object? e) {
+    if (e is DioError) {
+      AppError error = AppError(message: '', errorKey: '', statusCode: 0);
+      switch (e.type) {
+        case DioErrorType.connectTimeout:
+          // TODO: Handle this case.
+          error = AppError.error(message: 'DioErrorType.connectTimeout');
+          break;
+        case DioErrorType.sendTimeout:
+          error = AppError.error(message: 'DioErrorType.sendTimeout');
+          break;
+        case DioErrorType.receiveTimeout:
+          // TODO: Handle this case.
+          break;
+        case DioErrorType.response:
+          // TODO: Handle this case.
+          break;
+        case DioErrorType.cancel:
+          error = AppError.error(message: 'DioErrorType.cancel');
+
+          break;
+        case DioErrorType.other:
+          try {
+            error = AppError.fromJson(e.response!.data);
+          } catch (e) {
+            error = AppError.error(message: 'DioErrorType.other');
+          }
+          break;
+      }
+      throw error;
     }
   }
 }

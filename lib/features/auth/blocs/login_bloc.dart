@@ -45,6 +45,7 @@ class LoginBloc extends BlocBase with Validators {
 
   Future<LoginState> loginUserNameWithPwd() async {
     try {
+      isLoadingSink.add(true);
       final loginData = await _auth.loginEmailWithPwd(userNameVal!, pwdValue!);
       // return LoginState.success;
       if (loginData.accessToken != "") {
@@ -53,6 +54,8 @@ class LoginBloc extends BlocBase with Validators {
       return LoginState.fail;
     } catch (e) {
       rethrow;
+    } finally {
+      isLoadingSink.add(false);
     }
   }
 

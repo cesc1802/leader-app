@@ -1,15 +1,20 @@
 import 'package:leader_app/features/auth/models/login_data.dart';
 import 'package:leader_app/providers/api_provider.dart';
+import 'package:leader_app/repository/repository.dart';
 import 'package:leader_app/resources/token_manager.dart';
 import 'package:leader_app/wrappers/auth_credential/auth_credential.dart';
 
-class AppAuth {
+class AppAuth extends Repository {
   final ApiProvider _apiProvider = ApiProvider();
 
   Future<LoginData> signInWithCredential(AuthCredential credential) async {
-    final login = await _signIn(credential);
-    await saveData(login!.data);
-    return login.data;
+    try {
+      final login = await _signIn(credential);
+      await saveData(login!.data);
+      return login.data;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<void> saveData(LoginData login) async {
@@ -29,8 +34,8 @@ class AppAuth {
       }
       return null;
     } catch (e) {
-      throw UnimplementedError(
-          'signInWithCredential() is not implemented with err = $e');
+      handleError(e);
+      // rethrow;
     }
   }
 }

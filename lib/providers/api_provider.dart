@@ -26,8 +26,10 @@ class ApiProvider {
   }
 
   ApiProvider._internal() {
-    final baseOptions =
-        BaseOptions(baseUrl: FlavorConfig.instance!.values.baseUrl);
+    final baseOptions = BaseOptions(
+      baseUrl: FlavorConfig.instance!.values.baseUrl,
+      connectTimeout: 1500,
+    );
     _dio = Dio(baseOptions);
     setupInterceptors();
     (_dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson;
@@ -62,8 +64,6 @@ class ApiProvider {
           return handlers.next(response);
         },
         onError: (DioError e, handlers) async {
-          // return handlers
-          //     .next(NoInternetException(requestOptions: e.requestOptions));
           if (e.response == null) {
             throw NoInternetException(requestOptions: e.requestOptions);
           } else if (e.response!.statusCode == 401) {
@@ -103,6 +103,7 @@ class ApiProvider {
               );
             } else {}
           }
+          return handlers.next(e);
           return handlers.next(
             NoInternetException(
               requestOptions: e.requestOptions,
